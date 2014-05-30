@@ -1,0 +1,67 @@
+<header class="container-fluid">
+  <h2 class="text-center">
+    Troque conhecimento com seus amigos,<br /> 
+    mantenha tudo conectado<br />
+    <small>Conecte sua conta Veduca às redes sociais favoritas</small>
+  </h2>
+</header>
+<article class="container-fluid">
+  <div ng-controller="Step3Controller" class="container">
+    <div class="row text-center">
+      <button type="button" class="btn btn-lg btn-social" ng-class="{'active' : fbAuthorized}" onfocus="blur();" ng-click="facebookAuthorize();" ng-disabled="fbAuthorized">
+        <div class="container-fluid">
+          <span class="fa fa-check icon-active"></span>
+          <div class="row">
+            <span class="fa fa-facebook-square icon-social"></span>
+          </div>
+          <div class="row">
+            <label class="check">Facebook</label>
+          </div>
+        </div>
+      </button>
+
+
+      <button type="button" class="btn btn-lg btn-social" ng-class="{'active' : lnAuthorized}" onfocus="blur();" ng-click="linkedinAuthorize();" ng-disabled="lnAuthorized">
+        <div class="container-fluid">
+          <span class="fa fa-check icon-active"></span>
+          <div class="row">
+            <span class="fa fa-linkedin-square icon-social"></span>
+          </div>
+          <div class="row">
+            <label class="check">LinkedIn</label>
+          </div>
+        </div>
+      </button>
+
+
+<!--       <button type="button" class="btn btn-lg btn-social" onfocus="blur();" ng-click="twitterAuthorize();">
+        <div class="container-fluid">
+          <span class="fa fa-check icon-active"></span>
+          <div class="row">
+            <span class="fa fa-twitter-square icon-social"></span>
+          </div>
+          <div class="row">
+            <label class="check">Twitter</label>
+          </div>
+        </div>
+      </button> -->
+
+      <button type="button" class="btn btn-lg btn-social" ng-class="{'active' : gpAuthorized}" onfocus="blur();" ng-click="googlePlusAuthorize();"  ng-disabled="gpAuthorized">
+        <div class="container-fluid">
+          <span class="fa fa-check icon-active"></span>
+          <div class="row">
+            <span class="fa fa-google-plus-square icon-social"></span>
+          </div>
+          <div class="row">
+            <label class="check">Google+</label>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <div class="row text-center pull-down">
+      <button type="button" class="btn btn-default btn-action" ng-click="save();">Continuar</button>
+    </div>
+
+  </div>
+</article>

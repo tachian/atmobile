@@ -1,0 +1,8 @@
+<div class="modal large hide form-modal" id="resend-confirmation" vdc-resend-confirmation=""><div class="modal-header"><button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button><h2 class="title title--secondary">Confirmação de conta.</h2></div><div class="modal-wrapper"><hr class="l-row--down l-row--top"></div><div class="modal-body"><form accept-charset="UTF-8" class="simple_form l-row--top" id="resend_confirmation" name="resend_confirmation" novalidate ng-submit="resendConfirmation();"><div class="row-fluid"><p>Informe seu endereço de e-mail cadastrado e receba instruções sobre como ativar sua conta.</p><div id="error_message" class="alert hide alert-error"><strong>E-mail não encontrado.</strong> Por favor, verifique se digitou corretamente.</div><input class="string input-field input-full span12" ng-model="user.email" required ng-focus="resend_confirmation.email.$blur = false" ng-blur="resend_confirmation.email.$blur = true" id="user_email" name="email" placeholder="email" size="50" type="email" value=""><div class="l-row"><input type="submit" class="btn btn-vd btn-primary" id="btn-recover" name="commit" value="Enviar instruções para meu e-mail" ng-disabled="!resend_confirmation.$valid"></div></div></form></div><!-- <div class='modal-footer'>
+  <div class='l-centralize--h'>
+    Não tem uma conta ainda?
+    <a data-dismiss='modal' data-toggle='modal' data-target='#signup-box' role='button'>
+      Cadastre-se agora.
+    </a>
+  </div>
+</div> --></div>

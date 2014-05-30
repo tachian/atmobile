@@ -1,0 +1,8 @@
+<div class="container">
+	<div class="media media-browse" ng-repeat="subject in subjects">
+		<div class="media-body">
+	    <span class="badge pull-right">{{subject.total_courses}}</span>
+	    <a ng-href="#/subject/{{subject.id}}" class="pull-left">{{subject.name}}</a>
+		</div>
+	</div>
+</div>

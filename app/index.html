@@ -1,0 +1,101 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]--> 
+  <head>
+      <meta charset="utf-8">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+      <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+      <!-- build:css styles/vendor.css -->
+      <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+      <!-- endbower -->
+      <!-- endbuild -->
+      <!-- build:css({.tmp,app}) styles/main.css -->
+      <link rel="stylesheet" href="styles/main.css">
+      <link rel="stylesheet" href="styles/app.css">
+      
+      <link rel="stylesheet" href="styles/home.css">
+      <link rel="stylesheet" href="styles/video-js.css" >
+      <!-- endbuild -->
+  </head>
+  <body ng-app="atmobileApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+    <!-- Header -->
+    <header id="main-header" ng-include="layout.header" ng-cloak></header>
+
+    <!-- Add your site or application content here -->
+    <div class="view-container">
+        <div ng-view class="view-frame" ng-cloak></div>
+    </div>
+
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+
+    <!-- Modals -->
+    <div  ng-controller="UserController" ng-cloak>
+      <div class="l-login" ng-include=" 'views/shared/login.html' " ng-cloak></div>
+      <div class="l-signup" ng-include=" 'views/shared/signup.html' " ng-cloak></div>
+      <div class="l-signup-success" ng-include=" 'views/shared/signup-success.html' " ng-cloak></div>
+      <div class="l-forgot" ng-include=" 'views/shared/forgot-password.html' " ng-cloak></div>
+      <div class="l-forgot-success" ng-include=" 'views/shared/forgot-password-success.html' " ng-cloak></div>
+      <div class="l-reset-password" ng-include=" 'views/shared/reset-password.html' " ng-cloak></div>
+      <div class="l-resend-confirmation" ng-include=" 'views/shared/resend-confirmation.html' " ng-cloak></div>
+      <div class="l-resend-confirmation" ng-include=" 'views/shared/resend-confirmation-success.html' " ng-cloak></div>
+    </div>
+
+    <!-- Helpers -->
+    <span vdc-modal-helper ng-cloak></span>
+
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/jquery-waypoints/waypoints.js"></script>
+    <script src="bower_components/angulartics/src/angulartics.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <script src="scripts/config.js"></script>
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/browse_services.js"></script>
+    <script src="scripts/services/session_services.js"></script>
+    <script src="scripts/services/facebook_services.js"></script>
+    <script src="scripts/services/linkedin_services.js"></script>
+    <script src="scripts/services/google_plus_services.js"></script>
+    <script src="scripts/services/twitter_services.js"></script>
+    <script src="scripts/services/signup_services.js"></script>
+    <script src="scripts/services/tracking_services.js"></script>
+    <script src="scripts/services/auth_services.js"></script>
+    <script src="scripts/controllers/browse_controllers.js"></script>
+    <script src="scripts/controllers/home_controllers.js"></script>
+    <script src="scripts/controllers/user_controllers.js"></script>
+    <script src="scripts/controllers/header_controllers.js"></script>
+    <script src="scripts/directives/player_directives.js"></script>
+    <script src="scripts/directives/user_directives.js"></script>
+    <script src="scripts/directives/helper_directives.js"></script>        
+    <script src="scripts/directives/browse_directives.js"></script> 
+    <!-- Player -->
+    <script src="scripts/player/video.dev.js"></script>
+    <script src="scripts/player/youtube.new.js"></script>
+    <!-- End Player -->
+    <!-- endbuild -->
+  </body>
+</html>

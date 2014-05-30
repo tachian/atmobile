@@ -1,0 +1,202 @@
+/* app css stylesheet */
+
+/* cross fading between routes with ngView */
+body{
+  padding-top: 50px;
+}
+
+.view-container {
+  position: relative;
+}
+
+.view-frame.ng-enter,
+.view-frame.ng-leave {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.view-frame.ng-enter {
+  -webkit-animation: 0.5s fade-in;
+  -moz-animation: 0.5s fade-in;
+  -o-animation: 0.5s fade-in;
+  animation: 0.5s fade-in;
+  z-index: 100;
+}
+
+.view-frame.ng-leave {
+  -webkit-animation: 0.5s fade-out;
+  -moz-animation: 0.5s fade-out;
+  -o-animation: 0.5s fade-out;
+  animation: 0.5s fade-out;
+  z-index: 99;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-moz-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-webkit-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-moz-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-webkit-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/*Browse*/
+li.browse-list {
+  background-color: rgb(241, 241, 241);
+}
+
+.media.media-browse {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  background-color: rgb(241, 241, 241);
+  padding: 5px 5px 5px 5px;
+}
+
+.browse-inf{
+  font-size: 10px;
+}
+
+.header-browse{
+  text-align: center;
+  padding-top: 10px;
+}
+
+.panel-body.panel-body-browse {
+  padding: 5px;
+}
+
+.media-heading.name-course{
+  padding-top: 5px;
+}
+
+.progress-mba-header{
+  padding-bottom: 10px;
+}
+
+.progress-mba-browse{
+  padding-bottom: 10px;
+}
+
+.progress-box.progress-box-mba{
+  float: right;
+  width: 80%;
+  padding-top: 6px;
+}
+
+.progress-box.progress-box-browse{
+  float: left;
+  width: 45%;
+  padding-top: 7px;
+  padding-left: 5px;
+}
+
+.progress.progress-browse{
+  width: 50%;
+  height: 14px;
+  margin-bottom: 3px;
+  float: left;
+  background-color: black;
+}
+
+.progress.progress-mba{
+  width: 100%;
+  height: 5px;
+  background-color: black;
+}
+
+.progress.progress-browse{
+  width: 100%;
+  height: 5px;
+  background-color: black;
+}
+
+.progress-bar.progress-bar-browse.progress-bar-mba {
+  background-color: orange;
+}
+
+
+.progress-bar.progress-bar-browse {
+  font-size: 10px;
+  text-align: left;
+  line-height: normal;
+}
+
+.detail-progress{
+  font-size: 12px;
+}
+
+.detail-progress-browse{
+  font-size: 11px;
+  float: left;
+  padding-top: 2px;
+}
+
+.sel-part {
+  float: right;
+  padding-right: 3px;
+}
+
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.click-area{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10001;
+}
+
+.video-player {
+  background-color: black;
+  overflow: hidden;
+  z-index: 10003;
+  width: 100%;
+  position: fixed;
+}
+
+.icon-brazil{
+  display: inline-block;
+  background: url(../images/icone_brasil.gif) no-repeat;
+  width: 25px;
+  height: 18px;
+  position: relative;
+  bottom: 21px;
+  left: 3px;
+}
+/*.progress-bar.progress-bar-browse.progress-mba*/
+
+/*.videoPlayer{
+  width: 100%;
+  height: 100%;
+}*/

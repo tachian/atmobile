@@ -1,0 +1,68 @@
+<header class="container-fluid">
+  <h2 class="text-center">
+    Bem-vindo ao Veduca.<br />
+    Crie sua conta e comece a estudar já!<br /> 
+    <small>Conte-nos um pouco de você para selecionarmos os melhores cursos para você.</small>
+  </h2>
+</header>
+<article class="container-fluid">
+  <div ng-controller="Step1Controller" class="container">
+    <div class="row text-center form-title">
+      SEU TRABALHO HOJE 
+    </div>
+    <form role="form" ng-submit="save();">
+      <div class="row">
+        <div class="col-lg-4 col-md-4">
+          <div class="form-group">
+            <label>Área de atuação</label>
+            <div class="btn-group dropdown" ng-model="stepData.job" options="{{jobs}}" tabindex="1"></div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <div class="form-group">
+            <label class="" for="profession">Profissão</label>
+            <input type="text" class="form-control input-md" ng-model="stepData.profession" placeholder="" tabindex="2">
+          </div>
+        </div>
+        <div class=" col-lg-2 col-md-2">
+          <div class="form-group">
+            <label class="" for="experiences">Experiência</label>
+            <div class="btn-group dropdown" ng-model="stepData.experience" options="{{experiences}}" tabindex="3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center form-title pull-down">
+        FORMAÇÃO MAIS RECENTE
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-3">
+          <div class="form-group">
+            <label class="" for="formations">Grau de formação</label>
+            <div class="btn-group dropdown" ng-model="stepData.formation" options="{{formations}}" tabindex="4"></div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3">
+          <div class="form-group">
+            <label class="" for="jobs">Área de formação</label>
+            <div class="btn-group dropdown" ng-model="stepData.formation_area" options="{{formation_areas}}" tabindex="5"></div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+          <div class="form-group">
+            <label class="" for="profession">Universidade</label>
+            <input type="text" class="form-control" ng-model="stepData.university" placeholder="" tabindex="6">
+          </div>
+        </div>
+        <div class=" col-lg-2 col-md-2">
+          <div class="form-group">
+            <label class="" for="years">Ano de conclusão</label>
+            <div class="btn-group dropdown" ng-model="stepData.finish_year" options="{{finish_years}}" tabindex="7"></div>
+          </div>
+        </div>
+      </div>
+    <div class="row text-center pull-down">
+      <input type="submit" class="btn btn-default btn-action" value="Continuar" tabindex="8" />
+    </div>
+    </form>
+  </div>
+</article>
