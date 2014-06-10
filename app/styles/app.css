@@ -187,7 +187,7 @@ li.browse-list {
 
 .icon-brazil{
   display: inline-block;
-  background: url(../images/icone_brasil.gif) no-repeat;
+  background-image: url('../images/icone_brasil.gif');
   width: 25px;
   height: 18px;
   position: relative;

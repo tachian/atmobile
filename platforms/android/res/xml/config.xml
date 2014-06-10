@@ -7,9 +7,9 @@
     </feature>
     <name>AtMobile</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Video lectures 
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="altachian@gmail.com" href="http://github.com/tachian">
         Apache Cordova Team
     </author>
     <content src="/index.html" />

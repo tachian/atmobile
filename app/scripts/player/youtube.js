@@ -321,6 +321,7 @@ videojs.Youtube.prototype.paused = function(){ return (this.ytplayer)?(this.last
 videojs.Youtube.prototype.currentTime = function(){ return (this.ytplayer && this.ytplayer.getCurrentTime)?this.ytplayer.getCurrentTime():0; };
 videojs.Youtube.prototype.setCurrentTime = function(seconds){ this.ytplayer.seekTo(seconds, true); this.player_.trigger('timeupdate'); };
 videojs.Youtube.prototype.duration = function(){ return (this.ytplayer && this.ytplayer.getDuration)?this.ytplayer.getDuration():0; };
+videojs.Youtube.prototype.currentSrc = function(){ return this.srcVal; };
 
 videojs.Youtube.prototype.volume = function() {
   if (this.ytplayer && isNaN(this.volumeVal)) {
@@ -421,6 +422,7 @@ window.onYouTubeIframeAPIReady = function(){
 videojs.Youtube.prototype.onReady = function(){
   this.isReady_ = true;
   this.triggerReady();
+
   // Let the player take care of itself as soon as the YouTube is ready
   // The loading spinner while waiting for the tech would be impossible otherwise
   this.iframeblocker.style.display = '';
@@ -507,7 +509,6 @@ videojs.Youtube.prototype.onStateChange = function(state){
         this.player_.trigger('durationchange');
         this.player_.trigger('playing');
         this.player_.trigger('play');
-
         break;
 
       case YT.PlayerState.PAUSED:
@@ -632,6 +633,13 @@ videojs.Youtube.prototype.onPlaybackQualityChange = function(quality){
 videojs.Youtube.prototype.onError = function(error){
   this.player_.error = error;
   this.player_.trigger('error');
+  
+  if (error == 100 || error == 101 || error == 150) {
+    this.player_.bigPlayButton.hide();
+    this.player_.loadingSpinner.hide();
+    this.player_.posterImage.hide();
+    this.iframeblocker.style.display = '';
+  }
 };
 
 /**
@@ -684,7 +692,7 @@ function setInnerText(element, text) {
   var css = ' \
   .vjs-youtube .vjs-poster { background-size: cover; }\
   .vjs-poster, .vjs-loading-spinner, .vjs-big-play-button, .vjs-text-track-display{ pointer-events: none !important; }\
-  .iframeblocker { display:none;position:absolute;top:0;left:0;width:100%;height:100%;cursor:pointer;z-index:2; }\
+  .iframeblocker { display:none;position:absolute;top:0;left:0;width:100%;height:100%;z-index:2; }\
   .vjs-youtube.vjs-user-inactive .iframeblocker { display:block; } \
   .vjs-quality-button > div:first-child > span:first-child { position:relative;top:7px }\
   ';
