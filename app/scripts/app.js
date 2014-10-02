@@ -30,7 +30,7 @@ atmobileApp.config(['$routeProvider', '$locationProvider', '$provide',
     $routeProvider.
       when('/subjects', {
         templateUrl: 'views/browse/subjects.html',
-        controller: 'SubjectController',
+        controller: 'SubjectsController',
         resolve: {
           getSession: ['Session', function (Session) {
             return Session.getCurrentUser();
@@ -44,13 +44,13 @@ atmobileApp.config(['$routeProvider', '$locationProvider', '$provide',
       }).
       when('/subject/:id', {
         templateUrl: 'views/browse/courses.html',
-        controller: 'CoursesController',
+        controller: 'SubjectController',
         resolve: {
           getSession: ['Session', function (Session) {
             return Session.getCurrentUser();
           }],
           service: ['ServiceName', function (ServiceName) {
-            return ServiceName.load('subjects');
+            return ServiceName.load('courses');
           }],
           layout: [function () {
             return {
@@ -61,7 +61,7 @@ atmobileApp.config(['$routeProvider', '$locationProvider', '$provide',
       }).
       when('/universities', {
         templateUrl: 'views/browse/universities.html',
-        controller: 'UniversityController',
+        controller: 'UniversitiesController',
         resolve: {
           getSession: ['Session', function (Session) {
             return Session.getCurrentUser();
@@ -75,13 +75,13 @@ atmobileApp.config(['$routeProvider', '$locationProvider', '$provide',
       }).
       when('/university/:id', {
         templateUrl: 'views/browse/courses.html',
-        controller: 'CoursesController',
+        controller: 'UniversityController',
         resolve: {
           getSession: ['Session', function (Session) {
             return Session.getCurrentUser();
           }],
           service: ['ServiceName', function (ServiceName) {
-            return ServiceName.load('universities');
+            return ServiceName.load('courses');
           }],
           layout: [function () {
             return {
@@ -208,12 +208,12 @@ atmobileApp.run(['$rootScope', '$location', '$http', 'TokenHandler', 'AuthCallba
 
   // Initialize metadata
   $rootScope.metadata = {
-    'mainTitle': 'Veduca - Assista aos melhores cursos universitários do mundo, em português!',
-    'title': 'Veduca',
-    'description': 'Os melhores cursos universitários do Brasil e do mundo ao alcance de todos.',
-    'og:url': 'http://www.veduca.com.br',
-    'og:description': 'Os melhores cursos universitários do Brasil e do mundo ao alcance de todos.',
-    'og:title': 'Veduca',
+    'mainTitle': 'Loopa - O melhor conteúdo ao seu alcance.',
+    'title': 'Loopa',
+    'description': 'O melhor conteúdo ao seu alcance.',
+    'og:url': 'http://www.loopa.com.br',
+    'og:description': 'O melhor conteúdo ao seu alcance.',
+    'og:title': 'Loosa',
     'og:image': ''
   };
 
@@ -241,12 +241,12 @@ atmobileApp.factory('ServiceName', ['$q', function ($q) {
 atmobileApp.factory('MetaData', ['$q', function ($q) {
   return {
     metadata: {
-      'mainTitle': 'Veduca - Assista aos melhores cursos universitários do mundo, em português!',
-      'title': 'Veduca',
-      'description': 'Os melhores cursos universitários do Brasil e do mundo ao alcance de todos.',
-      'og:url': 'http://www.veduca.com.br',
-      'og:description': 'Os melhores cursos universitários do Brasil e do mundo ao alcance de todos.',
-      'og:title': 'Veduca',
+      'mainTitle': 'Loosa - O melhor conteúdo ao seu alcance.',
+      'title': 'Loopa',
+      'description': 'O melhor conteúdo ao seu alcance.',
+      'og:url': 'http://www.loopa.com.br',
+      'og:description': 'O melhor conteúdo ao seu alcance.',
+      'og:title': 'Loosa',
       'og:type': 'website',
       'og:image': ''
     },

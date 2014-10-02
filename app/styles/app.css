@@ -3,6 +3,7 @@
 /* cross fading between routes with ngView */
 body{
   padding-top: 50px;
+  background-color: rgba(190, 190, 190, 0.5);
 }
 
 .view-container {
@@ -69,18 +70,17 @@ li.browse-list {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
-  border-radius: 5px;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(255, 255, 255);
   padding: 5px 5px 5px 5px;
+  box-shadow: 2px 2px 2px #888888;
 }
 
 .browse-inf{
   font-size: 10px;
 }
 
-.header-browse{
+.title-header-browse{
   text-align: center;
-  padding-top: 10px;
 }
 
 .panel-body.panel-body-browse {
@@ -193,6 +193,25 @@ li.browse-list {
   position: relative;
   bottom: 21px;
   left: 3px;
+}
+
+.navbar-mobile{
+  background-color: rgb(51,51,51);
+}
+
+.navbar-brand.navbar-brand-mobile{
+  color: #fff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+color: #FFFFFF;
+background-color: transparent;
 }
 /*.progress-bar.progress-bar-browse.progress-mba*/
 

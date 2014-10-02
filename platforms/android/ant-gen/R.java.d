@@ -1,22 +1,17 @@
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/ant-gen/io/cordova/atmobile/R.java \
  : /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable/icon.png \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable/icon_2.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-hdpi/icon.png \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-hdpi/icon_2.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-land-hdpi/screen.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-land-ldpi/screen.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-land-mdpi/screen.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-land-xhdpi/screen.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-ldpi/icon.png \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-ldpi/icon_2.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-mdpi/icon.png \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-mdpi/icon_2.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-port-hdpi/screen.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-port-ldpi/screen.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-port-mdpi/screen.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-port-xhdpi/screen.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-xhdpi/icon.png \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-xhdpi/icon_2.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/values/strings.xml \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/xml/config.xml \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/ant-build/res/drawable/icon.png \

@@ -2,24 +2,19 @@
 
   <div class="video-overlay" ng-if="currentLecture">
 	  <div class="click-area" ng-click="destroyPlayer()"></div>
-			<div class="container video-player">
-				<video  videojs class="video-js vjs-default-skin" controls id="videoPlayer" data-setup="{}" webkit-playsinline>
-					<source src="" type='video/youtube'>
-					<track kind="subtitles" src="" srclang="pt" label="Português" default></track>
-    		</video>
-		  </div>
-		</div>
+		<video  videojs class="video-js vjs-default-skin" controls id="videoPlayer" data-setup="{}" webkit-playsinline>
+			<source src="" type='video/youtube'>
+			<track kind="subtitles" src="" srclang="pt" label="Português" default></track>
+ 		</video>
 	</div>
 
 	<div class="container" ng-cloak>
-		<div class="header-browse">
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-			    <h4 class="panel-title">{{courseInfo.name}}
-			    <small>{{courseInfo.teacher}} - {{courseInfo.university.name}}</small></h4>
-			  </div>
-			</div>
-		</div>
+		<div class="title-header-browse"><h4>{{courseInfo.name}}</h4></div>
+		<div class="title-header-browse">
+			<h4>
+			   <small>{{courseInfo.teacher}} - {{courseInfo.university_name}}</small>
+			</h4>
+	  </div>
 	</div>
 
 

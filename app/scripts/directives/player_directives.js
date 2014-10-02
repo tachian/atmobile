@@ -25,7 +25,7 @@ angular.module('playerDirectives', [])
           
           scope.player.load();
 
-          angular.element('body').css('padding-top','0px');  
+          angular.element('body').css('padding-top','0px');
 
           scope.$on('$destroy', function(node){
             videojs('videoPlayer').dispose();

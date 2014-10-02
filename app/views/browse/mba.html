@@ -1,22 +1,16 @@
 <div class="container-fluid">
 
 	<div class="container" ng-cloak>
-		<div class="header-browse">
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-			  	<h5>{{mbaInfo.name}}</h5>
-			  	<div class="progress-mba-header">
-						<div class="progress-box progress-box-mba">
-							<div class="progress progress-mba">
-							  <div class="progress-bar progress-bar-browse progress-bar-mba" role="progressbar" aria-valuenow="{{mbaInfo.percentComplete}}" aria-valuemin="0" aria-valuemax="100" style="width: {{mbaInfo.percentComplete}}%;">
-							  </div>
-							</div>
-						</div>
-					  <div class="detail-progress">
-					  	{{mbaInfo.percentComplete | number:2}}%
-						</div>
-					</div>
-			  </div>
+		<div class="title-header-browse"><h5>{{mbaInfo.name}}</h5></div>
+  	<div class="progress-mba-header">
+			<div class="progress-box progress-box-mba">
+				<div class="progress progress-mba">
+				  <div class="progress-bar progress-bar-browse progress-bar-mba" role="progressbar" aria-valuenow="{{mbaInfo.percentComplete}}" aria-valuemin="0" aria-valuemax="100" style="width: {{mbaInfo.percentComplete}}%;">
+				  </div>
+				</div>
+			</div>
+		  <div class="detail-progress">
+		  	{{mbaInfo.percentComplete | number:2}}%
 			</div>
 		</div>
 	</div>

@@ -7,7 +7,7 @@
       <meta charset="utf-8">
       <title></title>
       <meta name="description" content="">
-      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"/>
       <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
       <!-- build:css styles/vendor.css -->
       <!-- bower:css -->
@@ -39,22 +39,6 @@
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-
-
-    <!-- Modals -->
-    <div  ng-controller="UserController" ng-cloak>
-      <div class="l-login" ng-include=" 'views/shared/login.html' " ng-cloak></div>
-      <div class="l-signup" ng-include=" 'views/shared/signup.html' " ng-cloak></div>
-      <div class="l-signup-success" ng-include=" 'views/shared/signup-success.html' " ng-cloak></div>
-      <div class="l-forgot" ng-include=" 'views/shared/forgot-password.html' " ng-cloak></div>
-      <div class="l-forgot-success" ng-include=" 'views/shared/forgot-password-success.html' " ng-cloak></div>
-      <div class="l-reset-password" ng-include=" 'views/shared/reset-password.html' " ng-cloak></div>
-      <div class="l-resend-confirmation" ng-include=" 'views/shared/resend-confirmation.html' " ng-cloak></div>
-      <div class="l-resend-confirmation" ng-include=" 'views/shared/resend-confirmation-success.html' " ng-cloak></div>
-    </div>
-
-    <!-- Helpers -->
-    <span vdc-modal-helper ng-cloak></span>
 
 
     <!-- build:js scripts/vendor.js -->

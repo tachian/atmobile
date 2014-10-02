@@ -4,6 +4,8 @@ var headerControllers = angular.module('headerControllers', []);
 
 headerControllers.controller('HeaderController', ['$rootScope', '$scope', 'Session', function ($rootScope, $scope, Session) {
 
+  $scope.title = "Tulupa";
+
   $scope.current_user = function () { 
     return Session.currentUser; 
   };

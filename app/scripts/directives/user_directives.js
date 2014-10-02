@@ -7,18 +7,10 @@ userDirectives.directive('vdcLogin', ['$rootScope', '$route', '$location', funct
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
-      $rootScope.$on('event:login-open', function (event, data) {
-        $scope.login_form.$setPristine();
-        if (angular.isDefined(data) && data.confirmation){
-          $scope.confirmation_success = data.confirmation;
-        }
-        element.modal('show');
-        element.removeClass('hide');
-      });
+      $scope.login_form.$setPristine();
 
       $rootScope.$on('event:login-close', function (event) {
         $scope.login_form.$setPristine();
-        element.modal('hide');
       });
 
       $rootScope.$on('event:login-error', function (event, data) {
@@ -27,13 +19,12 @@ userDirectives.directive('vdcLogin', ['$rootScope', '$route', '$location', funct
         } else {
           $scope.login_form.$setPristine();
         }
-        element.modal('show');
       });
 
       function login_success(event) {
         $scope.showErrors = false;
         $scope.login_form.$setPristine();
-        element.modal('hide');
+        element.addClass('hide');
         $scope.show_current_user();
         $location.path('/myCourses');
       }
@@ -55,12 +46,6 @@ userDirectives.directive('vdcLogin', ['$rootScope', '$route', '$location', funct
 
       $scope.user_confirmed();
 
-      angular.element('.close').bind('click', function (event) {
-        $scope.showErrors = false;
-        $scope.login_form.$setPristine();
-        element.modal('hide');
-        $scope.$apply();
-      });
     }
   };
 }]);
@@ -275,7 +260,7 @@ userDirectives.directive('vdcLogout', ['$rootScope', function ($rootScope) {
   };
 }]);
 
-userDirectives.directive('vdcProfileMenu', ['$cookieStore', '$rootScope', function ($cookieStore, $rootScope) {
+userDirectives.directive('vdcProfileMenu', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'E',
     link: function($scope, element, attrs) {

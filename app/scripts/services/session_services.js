@@ -2,7 +2,7 @@
 
 var sessionServices = angular.module('sessionServices', []);
 
-sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', '$cookieStore', 'Facebook', 'LinkedIn', 'GooglePlus', 'Twitter', 'API_SERVER', function ($location, $http, $q, $rootScope, $cookieStore, Facebook, LinkedIn, GooglePlus, Twitter, API_SERVER) {
+sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'Facebook', 'LinkedIn', 'GooglePlus', 'Twitter', 'API_SERVER', function ($location, $http, $q, $rootScope, Facebook, LinkedIn, GooglePlus, Twitter, API_SERVER) {
   // Redirect to the given url (defaults to '/')
   function redirect(url) {
     url = url || '/';
@@ -109,7 +109,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', '$
     },
 
     register: function(name, email, phone, password) {
-      return $http.post('http://' + API_SERVER + '/register', {user: {name: name, email: email, phone: phone, password: password}})
+      return $http.post('http://' + API_SERVER + '/register', {user: {name: name, email: email, password: password}})
       .then(function (response) { // Success
         // service.populateUser(response.data);
         // if (service.isAuthenticated()) {
@@ -161,12 +161,12 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', '$
         return $q.when(service.currentUser);
       } else {
         // if not, check to see if cookie exists and get user from there
-        if(angular.isObject($cookieStore.get('_vdc_current_user'))) {
-          var cookie_user = $cookieStore.get('_vdc_current_user');
+        if(angular.isObject(JSON.parse(window.localStorage.getItem('_tlp_current_user')))) {
+          var cookie_user = JSON.parse(window.localStorage.getItem('_tlp_current_user'));
           var remember_date = +new Date(cookie_user.remember_ts * 1000);
           var current_date = +new Date() / 1000;
           if(remember_date >= current_date) {
-            return $http.get('http://' + API_SERVER + '/current_user', {headers: {
+            return $http.get('http://' + API_SERVER + '/users/' + cookie_user.id + '.json', {headers: {
               'X-User-Token': cookie_user.authentication_token,
               'X-User-Email': cookie_user.email
             }}).then(function (response) { // Success
@@ -179,7 +179,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', '$
               return false;
             });
           } else {
-            $cookieStore.remove('_vdc_current_user');
+            window.localStorage.removeItem('_vdc_current_user');
             $rootScope.$emit('event:fetch-user-error', {errors: ['cookie is old']});
             return false;
           }
@@ -192,11 +192,11 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', '$
 
     userConfirmed: function() {
 
-      if(angular.isObject($cookieStore.get('_vdc_confirmation_success'))) {
-        var confirmation_cookie = $cookieStore.get('_vdc_confirmation_success');
+      if(angular.isObject(window.localStorage.getItem('_tlp_confirmation_success'))) {
+        var confirmation_cookie = JSON.parse(window.localStorage.getItem('_tlp_confirmation_success'));
         if (confirmation_cookie.status) {
           $rootScope.$emit('event:login-open', {confirmation: true});
-          $cookieStore.remove('_vdc_confirmation_success');
+          window.localStorage.removeItem('_tlp_confirmation_success');
           service.handleConfirmationForMba();
           return true;
         }else{
@@ -207,10 +207,10 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', '$
 
     handleConfirmationForMba: function () {
 
-      if(angular.isObject($cookieStore.get('_vdc_mba_registration'))) {
-        var mba_registration_proccess = $cookieStore.get('_vdc_mba_registration');
+      if(angular.isObject(window.localStorage.getItem('_tlp_mba_registration'))) {
+        var mba_registration_proccess = JSON.parse(window.localStorage.getItem('_tlp_mba_registration'));
         if (mba_registration_proccess.status) {
-          $cookieStore.remove('_vdc_mba_registration');
+          window.localStorage.removeItem('_tlp_mba_registration');
           $rootScope.$emit('event:confirmation_redirect_mba', mba_registration_proccess.url);
         }
       }
@@ -272,15 +272,16 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', '$
     populateUser: function(data) {
       if(data) {
         service.currentUser = data;
-        $cookieStore.put('_vdc_current_user', {
+        window.localStorage.setItem('_tlp_current_user', JSON.stringify({
           name: service.currentUser.name,
           email: service.currentUser.email,
+          id: service.currentUser.id,
           authentication_token: service.currentUser.authentication_token,
           remember_ts: service.currentUser.remember_ts || (Date.now() + 3600 * 2)
-        });
+        }));
       } else {
         service.currentUser = null;
-        $cookieStore.remove('_vdc_current_user');
+        window.localStorage.removeItem('_tlp_current_user');
       }
     },
 

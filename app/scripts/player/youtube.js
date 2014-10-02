@@ -529,6 +529,9 @@ videojs.Youtube.prototype.onStateChange = function(state){
     }
 
     this.ytplayer.unloadModule('captions');
+    if(this.duration() <= 5){
+      this.player_.trigger('durationchange');
+    }
     this.lastState = state;
   }
 };

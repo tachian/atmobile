@@ -1,14 +1,8 @@
 <div class="container-fluid">
 	
 	<div class="container" ng-cloak>
-		<div class="header-browse">
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-					<div ng-if="listCourses.length==1"><h5>Você assistiu {{listCourses.length}} curso no Veduca.</h5></div>
-					<div ng-if="listCourses.length>1"><h5>Você assistiu {{listCourses.length}} cursos no Veduca.</h5></div>
-			  </div>
-			</div>
-		</div>
+		<div class="title-header-browse" ng-if="listCourses.length==1"><h4>Você assistiu {{listCourses.length}} curso no Veduca.</h4></div>
+		<div class="title-header-browse" ng-if="listCourses.length>1"><h4>Você assistiu {{listCourses.length}} cursos no Veduca.</h4></div>
 	</div>
 
 

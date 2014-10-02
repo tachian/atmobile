@@ -1,36 +1,67 @@
-<div id="not-supported" class="hidden-xs">
-  <div class="title--xx-large">
-    Somente para Mobile.
-  </div>
+<div class="container container-home">
+  <div class="title--xxx-large">AMPLIE</div>
+  <div class="title--xx-large">AS POSSIBILIDADES PARA SUA CARREIRA</div>
+  <ul>
+    <li>Estude de graça, a qualquer hora, no seu ritmo, do seu jeito</li>
+    <li>Explore 289 cursos das melhores instituições de ensino do mundo</li>
+  </ul>
 </div>
 
+<div  ng-controller="UserController" ng-cloak>
+  <div vdc-login>
+    <form accept-charset="UTF-8" role="form" id="login_form" name="login_form" novalidate="novalidate" ng-submit="login();">
+      <div class='row-fluid'>
+        <div class="col-xs-3">
+          <div data-target="#facebook" class="btn btn-link" vdc-facebook-login>
+            <i class="iconx-fb-login"></i>
+          </div>
+        </div>
+        <div class="col-xs-9 border-login">
+          <div class="alert-message alert" ng-show="(login_form.email.$error.required && login_form.email.$error.invalid && login_form.email.$blur) || (login_form.password.$error.required && login_form.password.$error.invalid && login_form.password.$blur) || showErrors">
+            {{errors.message}} </br><a  data-dismiss='modal' data-toggle='modal' data-target='#resend-confirmation' role='button' ng-if="errors.unconfirmed">Quero confirmar minha conta!</a>
+          </div>
+          <div class="alert alert-success" ng-if='confirmation_success'><strong>Seu email foi confirmado com sucesso!</strong></div>
 
-<div id="home" class="visible-xs">
-  <div class="container container-home">
-    <div class="row-fluid">
-      <div class="title--xxx-large">
-        AMPLIE
-      </div>
-      <br/>
-      <div class="title--xx-large">
-        AS POSSIBILIDADES
-        <br/>
-        PARA SUA CARREIRA
-      </div>
-      <ul class="unstyled">
-        <li>
-          Estude de graça, a qualquer hora, no seu ritmo, do seu jeito
-        </li>
-        <li>
-          Explore 289 cursos das melhores instituições de ensino do mundo
-        </li>
-        <li>
-          Conheça nossas opções de cursos certificados
-        </li>
-      </ul>
+          <fieldset>
 
-      <a class="pull-left btn-signup" ng-click="openSignUp();">Cadastre-se!</a>
-      <a class="pull-right btn-login" ng-click="openLogin();">Entrar</a>
-    </div>
+
+            <div class="control-group user_email">
+              <div class="form-group">
+                <input class="string input-field input-full" ng-model="user.email" required ng-focus="login_form.email.$blur = false" ng-blur="login_form.email.$blur = true" id="user_email" name="email" placeholder="email" size="25" type="email" vdc-auto-fillable-field />
+              </div>
+            </div>
+
+            <div class="control-group user_password">
+              <div class="form-group">
+                <input class="input-field input-full" ng-model="user.password" required ng-focus="login_form.password.$blur = false" ng-blur="login_form.password.$blur = true" ng-minlength="6" id="user_password" name="password" placeholder="senha" size="25" type="password" vdc-auto-fillable-field />
+              </div>
+            </div>
+
+            <input type="submit" class="btn btn-sm btn-primary" id="btn-login" name="commit" value="Entrar" ng-disabled="!login_form.$valid" />
+
+            ou
+
+            <a class="btn btn-sm btn-danger" ng-click="openSignUp();">Cadastre-se!</a>
+
+            <a data-dismiss='modal' data-toggle='modal' data-target='#recover-box' role='button'><h5>esqueceu sua senha?</h5></a>
+            
+          </fieldset> 
+        </div>
+      </div>
+    </form>
   </div>
+
+
+  <!-- Modals -->
+  <div class="l-signup" ng-include=" 'views/shared/signup.html' " ng-cloak></div>
+  <div class="l-signup-success" ng-include=" 'views/shared/signup-success.html' " ng-cloak></div>
+  <div class="l-forgot" ng-include=" 'views/shared/forgot-password.html' " ng-cloak></div>
+  <div class="l-forgot-success" ng-include=" 'views/shared/forgot-password-success.html' " ng-cloak></div>
+  <div class="l-reset-password" ng-include=" 'views/shared/reset-password.html' " ng-cloak></div>
+  <div class="l-resend-confirmation" ng-include=" 'views/shared/resend-confirmation.html' " ng-cloak></div>
+  <div class="l-resend-confirmation" ng-include=" 'views/shared/resend-confirmation-success.html' " ng-cloak></div>
 </div>
+
+<!-- Helpers -->
+<span vdc-modal-helper ng-cloak></span>
+

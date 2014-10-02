@@ -32,7 +32,7 @@ authServices.factory('AuthCallbacks', ['$rootScope','httpBuffer', function($root
 authServices.config(['$httpProvider', function($httpProvider) {
 
   // Main API Version Header
-  $httpProvider.defaults.headers.common.Accept = 'application/vnd.veduca+json; version=1';
+  $httpProvider.defaults.headers.common.Accept = 'application/vnd.loosa+json; version=1';
 
   $httpProvider.interceptors.push(['$rootScope', '$q', '$injector', 'httpBuffer', 'TokenHandler', function($rootScope, $q, $injector, httpBuffer, tokenHandler) {
     return {
@@ -55,7 +55,7 @@ authServices.config(['$httpProvider', function($httpProvider) {
         var deferred = $q.defer();
         if (rejection.status === 401 && !rejection.config.ignoreAuthModule) {
           // filter invalid token errors
-          if(rejection.data.provider === 'application/vnd.veduca') {
+          if(rejection.data.provider === 'application/vnd.loosa') {
             tokenHandler.set(null);
             httpBuffer.append(rejection.config, deferred);
             $rootScope.$emit('event:auth-token-error', rejection);

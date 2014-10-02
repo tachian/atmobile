@@ -48,7 +48,7 @@ angular.module('browseDirectives', [])
       link: function (scope, element, attrs){
 
         function completePart(){
-          if(scope.lecture.currentPart.visited){
+          if(scope.lecture.currentPart.is_visited){
             element.css('color', 'rgb(68, 180, 87)');
           }
           else

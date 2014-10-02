@@ -1,26 +1,30 @@
 <div class="container-fluid">
 
-	<div class="container" ng-cloak>
-		<div class="header-browse">
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-			  	<div class="container">
-						<div class="pull-left">
-							<h5>{{listCourses.name}}</h5>
-						</div>
-						<div class="pull-right">
-							<h5>
-								<div ng-if="listCourses.total_courses==1">{{listCourses.total_courses}} curso</div>
-								<div ng-if="listCourses.total_courses>1">{{listCourses.total_courses}} cursos</div>
-							</h5>
-						</div>
-					</div>
-			  </div>
-			</div>
+	<div class="container" ng-cloak ng-show="subject">
+		<div class="title-header-browse"><h4>{{subject.name}}</h4></div>
+		<div class="title-header-browse">
+			<h4>
+				<small>
+					<div ng-if="subject.total_courses==1">{{subject.total_courses}} curso</div>
+					<div ng-if="subject.total_courses>1">{{subject.total_courses}} cursos</div>
+				</small>
+			</h4>
 		</div>
 	</div>
 
-	<div class="media media-browse" ng-repeat="course in listCourses.courses">
+	<div class="container" ng-cloak ng-show="!subject">
+		<div class="title-header-browse"><h4>{{listCourses[0].university.name}}</h4></div>
+		<div class="title-header-browse">
+			<h4>
+				<small>
+					<div ng-if="listCourses.length==1">{{listCourses.length}} curso</div>
+					<div ng-if="listCourses.length>1">{{listCourses.length}} cursos</div>
+				</small>
+			</h4>
+		</div>
+	</div>
+
+	<div class="media media-browse" ng-repeat="course in listCourses">
 		<a class="pull-left" ng-href="#/course/{{course.id}}" style='width: 90px; height: 50px;'>
 			<img class="media-object" ng-src="http://cdn.veduca.com.br/uploads/course/{{course.id}}/preview_{{course.id}}.jpg" alt="Responsive image" style='width: 90px; height: 50px;'>
 			<div ng-class="{'icon-brazil': course.subtitles}"></div>

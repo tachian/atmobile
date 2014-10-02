@@ -2,7 +2,7 @@
 
 var browseControllers = angular.module('browseControllers', []);
 
-browseControllers.controller('SubjectController', ['$scope', 'Subjects',
+browseControllers.controller('SubjectsController', ['$scope', 'Subjects',
   function ($scope, Subjects) {
     
     Subjects.query().$promise.then(function(data) {
@@ -12,7 +12,27 @@ browseControllers.controller('SubjectController', ['$scope', 'Subjects',
   }
 ]);
 
-browseControllers.controller('UniversityController', ['$scope', 'Universities',
+browseControllers.controller('SubjectController', ['$scope', '$routeParams', 'Subjects', 'Subject', 'ServiceName',
+  function ($scope, $routeParams, Subjects, Subject, ServiceName) {
+    
+    var serviceName = ServiceName.name;
+
+    Subjects.query({query: serviceName, id: $routeParams.id}).$promise.then(function(data) {
+      $scope.listCourses = data;
+    });
+
+    $scope.subject = {}
+
+    Subject.query({id: $routeParams.id}).$promise.then(function(data) {
+      $scope.subject.name = data.name;
+      $scope.subject.total_courses = data.total_courses;
+    });
+
+
+  }
+]);
+
+browseControllers.controller('UniversitiesController', ['$scope', 'Universities',
   function ($scope, Universities) {
     
     Universities.query().$promise.then(function(data) {
@@ -22,91 +42,73 @@ browseControllers.controller('UniversityController', ['$scope', 'Universities',
   }
 ]);
 
-browseControllers.controller('CoursesController', ['$scope', '$routeParams', 'Courses', 'ServiceName',
-  function ($scope, $routeParams, Courses, ServiceName) {
+browseControllers.controller('UniversityController', ['$scope', '$routeParams', 'Universities', 'ServiceName',
+  function ($scope, $routeParams, Universities, ServiceName) {
     
     var serviceName = ServiceName.name;
 
-    Courses.query({service: serviceName, id: $routeParams.id}).$promise.then(function(data){
+    Universities.query({query: serviceName, id: $routeParams.id}).$promise.then(function(data){
+      $scope.university_name = data[0].university.name
       $scope.listCourses = data;
     });
 
   }
 ]);
 
-browseControllers.controller('MyCoursesController', ['$scope', '$http', '$location', 'MyCourses', 'Session',
-  function ($scope, $http, $location, MyCourses, Session) {
+browseControllers.controller('MyCoursesController', ['$scope', '$http', '$location', 'Users', 'Session',
+  function ($scope, $http, $location, Users, Session) {
     
     $scope.current_user = function () { 
       return Session.currentUser; 
     };
 
+    $scope.listCourses = [];
+
     if(Session.isAuthenticated()) {
       $http.defaults.headers.common['X-User-Token'] = Session.currentUser.authentication_token;
       $http.defaults.headers.common['X-User-Email'] = Session.currentUser.email;
 
-      MyCourses.query().$promise.then(function(data){
-        angular.forEach(data, function (course){
+      Users.query({query: "visits", id: Session.currentUser.id}).$promise.then(function(data){
+        angular.forEach(data, function (visit){
+          var course = $.grep($scope.listCourses, function(e){ return e.course_id == visit.course_id; });
+          if (course.length == 0)
+          { 
+            course = {};
+            course.name = visit.course_name;
+            course.teacher = visit.teacher;
+            course.university_name = visit.university_name;
+            course.total_parts = visit.total_parts;
+            course.course_id = visit.course_id;
+            course.visiteds = 1;
+            $scope.listCourses.push(course);
+          }
+          else
+          { 
+            course = course[0];
+            course.visiteds += 1; 
+          }
+
           course.percentComplete = (course.total_parts > 0) ? Math.round(course.visiteds/course.total_parts * 100, 2) : 0;
+          
+          
         });
-        $scope.listCourses = data;
+        
       });
     }
     else
     {
       //TODO: Move to run block
-      $location.path('/');
+      $location.path('/').replace();
     }
   }
 ]);
 
-browseControllers.controller('MbaController', ['$scope', '$http', '$location', 'UserMbaEnrollment', 'CourseProgress', 'Session',
-  function ($scope, $http, $location, UserMbaEnrollment, CourseProgress, Session) {
-    
-    if(Session.isAuthenticated()) {
-      $http.defaults.headers.common['X-User-Token'] = Session.currentUser.authentication_token;
-      $http.defaults.headers.common['X-User-Email'] = Session.currentUser.email;
-
-      var mbaName = {name: 'mba_ei'};
-      UserMbaEnrollment.get(mbaName).$promise.then(function (response){
-        $scope.mbaInfo = {};
-          
-        var program = {};
-        program.name = response.program_name;
-        program.courses = response.courses;
-        program.percentComplete = 0;
-        program.numCols = 2;
-        program.rows = [];
-        program.cols = [];
-        program.rows.length = Math.ceil(response.courses.length / program.numCols);
-        program.cols.length = program.numCols;
-        
-        angular.forEach(program.courses, function (course){
-
-          // Request percentage from each course      
-          CourseProgress.get({course_id: course.id}).$promise.then(function (response) {
-            course.percentComplete = (response.total_parts > 0) ? Math.round((response.part_visiteds/response.total_parts) * 100, 2) : 0;
-            program.percentComplete = (program.percentComplete + (course.percentComplete/ program.courses.length));
-          });
-        });
-    
-        $scope.mbaInfo = program;
-      });
-    }
-    else
-    {
-      $location.path('/');
-    }
-  }
-]);
-
-browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$http', '$location', 'CourseInfo', 'Lectures', 'Parts', 'VisitedPart', 'Session',
-  function ($scope, $routeParams, $http, $location, CourseInfo, Lectures, Parts, VisitedPart, Session) {
-
+browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$http', '$location', 'Courses', 'Lectures', 'Visits','Session',
+  function ($scope, $routeParams, $http, $location, Courses, Lectures, Visits, Session) {
 
     $scope.lectures = [];
 
-    var parts = Parts.get;
+    var lectures = Lectures.query;
     var serviceParts = "user_parts";
 
     $scope.state = null;
@@ -116,33 +118,53 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
 
     if(Session.isAuthenticated()) {
 
-      if(Session.userHasEnrollment('mba_ei').user_request_certified){
-        serviceParts = "user_parts_certified";
-      }
-
-      CourseInfo.query({service: 'course_info', id: $routeParams.id}).$promise.then(function(data) {
-        $scope.courseInfo = data;
-      });
-
       $http.defaults.headers.common['X-User-Token'] = Session.currentUser.authentication_token;
       $http.defaults.headers.common['X-User-Email'] = Session.currentUser.email;
-    
-      Lectures.query({service: 'course_visiteds', id: $routeParams.id}).$promise.then(function(data) {
-        data.forEach(function (listItem) {
 
-          parts({service: serviceParts, id: listItem.id}).$promise.then(function(data) {
-            listItem.parts = data;
-            listItem.perc = percComplete(listItem.visited_parts, listItem.parts.length);
-            $scope.lectures.push(listItem);
-            listItem.currentPart = data[0];
-            data.forEach(function (part){
-              if(part.visited){
-                listItem.currentPart = part;
+      $scope.courseInfo = {};
+
+      Courses.query({id: $routeParams.id}).$promise.then(function(data) {
+        $scope.courseInfo.name = data.name;
+        $scope.courseInfo.university_name = data.university.name;
+        $scope.courseInfo.teacher = data.teacher;
+        $scope.courseInfo.id = data.id;
+        data.lectures.forEach(function (lecture) {
+          lectures({query: 'parts', id: lecture.id}).$promise.then(function(data) {
+            lecture.parts = data;
+            lecture.currentPart = data[0];
+            lecture.visited_parts = 0;
+            lecture.number_parts = data.length;
+            lecture.perc = 0;
+            $scope.lectures.push(lecture);
+            lecture.parts.forEach(function (part){
+              if(part.is_visited){
+                lecture.currentPart = part;
+                lecture.visited_parts += 1;
+                lecture.perc = percComplete(lecture.visited_parts, lecture.parts.length);
               } 
             });
           });
         });
       });
+
+
+    
+      // Lectures.query({service: 'course_visiteds', id: $routeParams.id}).$promise.then(function(data) {
+      //   data.forEach(function (listItem) {
+
+      //     parts({service: serviceParts, id: listItem.id}).$promise.then(function(data) {
+      //       listItem.parts = data;
+      //       listItem.perc = percComplete(listItem.visited_parts, listItem.parts.length);
+      //       $scope.lectures.push(listItem);
+      //       listItem.currentPart = data[0];
+      //       data.forEach(function (part){
+      //         if(part.visited){
+      //           listItem.currentPart = part;
+      //         } 
+      //       });
+      //     });
+      //   });
+      // });
     }
     else
     {
@@ -172,18 +194,19 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
         course_id: $scope.courseInfo.id,
         lecture_id: lecture.id,
         part_id: currentPart.id,
+        user_id: Session.currentUser.id,
         time: 0
       };
-      VisitedPart.save(visitedPartContents).$promise.then(function (response) {
-        var indexLecture = $scope.lectures.indexOf(lecture);
-        var indexPart = $scope.lectures[indexLecture].parts.indexOf(currentPart);
-        if(!$scope.lectures[indexLecture].parts[indexPart].visited){
-          $scope.lectures[indexLecture].parts[indexPart].visited = true;
+      var indexLecture = $scope.lectures.indexOf(lecture);
+      var indexPart = $scope.lectures[indexLecture].parts.indexOf(currentPart);
+      if(!$scope.lectures[indexLecture].parts[indexPart].is_visited){
+        Visits.save(visitedPartContents).$promise.then(function (response) {
+          $scope.lectures[indexLecture].parts[indexPart].is_visited = true;
           $scope.lectures[indexLecture].visited_parts++;
           $scope.lectures[indexLecture].perc = percComplete($scope.lectures[indexLecture].visited_parts, $scope.lectures[indexLecture].parts.length);
           $scope.lectures[indexLecture].currentPart.visited = true;
-        };
-      });
+        });
+      };
     };
 
 

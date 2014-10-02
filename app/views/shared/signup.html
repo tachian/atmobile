@@ -10,11 +10,6 @@
       <div class='modal-body' style="padding: 10px 20px 0px 20px;">
         <form accept-charset="UTF-8" class="form-horizontal" role="form" id="register_form" name="register_form" novalidate="novalidate" ng-submit="register();">
           <div class='row-fluid'>
-            <div data-target="#facebook" class="btn btn-primary btn-sm" vdc-facebook-login>
-              <i class="iconx-fb"></i>
-               com Facebook
-            </div>
-            <span class="help-block">Ou preencha o formulário abaixo.</span>
             <div>
               <div class="alert-message alert" ng-show="(register_form.name.$error.required && register_form.name.$error.invalid && register_form.name.$blur) || (register_form.email.$error.required && register_form.email.$error.invalid && register_form.email.$blur) || (register_form.password.$error.required && register_form.password.$error.invalid && register_form.password.$blur)">Nome, e-mail ou senha invalidos.</div>
               <fieldset>
@@ -36,15 +31,6 @@
                         </div>
                       </div>
                     </div>
-                    
-                    <div class="col-md-6 col-md-offset-3">
-                      <div class="control-group user_area_code" ng-class="{error: (errors.area_code && register_form.area_code.$blur && !register_form.area_code.$dirty)}">
-                        <div class="form-group">
-                          <input class="string input-field" ng-model="user.area_code" ng-change="formatAreaCode(user.area_code);" ng-focus="register_form.area_code.$blur = false" ng-blur="register_form.area_code.$blur = true" id="user_area_code" name="area_code" placeholder="DDD" size="5" type="text" minlength="2" maxlength="4" vdc-auto-fillable-field />
-                          <input class="string input-field" ng-model="user.phone_number" ng-change="formatPhoneNumber(user.phone_number);" ng-focus="register_form.phone_number.$blur = false" ng-blur="register_form.phone_number.$blur = true" id="user_phone_number" name="phone_number" placeholder="telefone" size="10" type="text" minlength="8" maxlength="9" vdc-auto-fillable-field />
-                        </div>
-                      </div>
-                    </div>
 
                     <div class="col-md-6 col-md-offset-3">
                       <div class="control-group user_password" ng-class="{error: (errors.password && register_form.password.$blur && !register_form.password.$dirty)}">
@@ -57,14 +43,15 @@
 
               </fieldset>
               <p>
-                Ao cadastrar-se, você concorda com nossos
+                <!-- TODO: Must implement pages userterms.html e privacy.html -->
+<!--                 Ao cadastrar-se, você concorda com nossos
                 <a href='useterms' target='blank'>
                   termos de uso
                 </a>
                 e
                 <a href='privacy' target='blank'>
                   política de privacidade
-                </a>
+                </a> -->
               </p>
               <div class='l-row'>
                 <input type="submit" class="btn btn-vd btn-primary" id="btn-register" name="commit" value="Cadastrar" ng-disabled="!register_form.$valid" />
@@ -75,8 +62,6 @@
 
       </div>
       <div class='modal-footer' style="padding: 10px 10px 10px; margin-top: 10px;">
-        Já é um dos nossos?
-        <a data-dismiss='modal' data-toggle='modal' data-target='#login-box' role='button'>Entre com seu login</a>
       </div>
     </div>
   </div>
