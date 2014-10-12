@@ -20,10 +20,10 @@ facebookServices.factory('Facebook', ['$window', '$rootScope', '$http', 'API_SER
         FB.Event.subscribe('auth.authResponseChange', function (response) {
           if (response.status === 'connected') {
             // User connected from facebook
-            $rootScope.$emit('event:facebook-connected', response.authResponse);
+            $rootScope.$emit('facebook-connected', response.authResponse);
           } else {
             // User not connected from facebook
-            $rootScope.$emit('event:facebook-disconnected');
+            $rootScope.$emit('facebook-disconnected');
           }
         });
       };
@@ -57,16 +57,16 @@ facebookServices.factory('Facebook', ['$window', '$rootScope', '$http', 'API_SER
 
               $http.post('http://' + API_SERVER + '/facebook/login', {user_data: user_data})
               .then(function (response) { // Success
-                $rootScope.$emit('event:facebook-login-success', response);
+                $rootScope.$emit('facebook-login-success', response);
               },
               function (response) { // Error
-                $rootScope.$emit('event:facebook-login-error', response);
+                $rootScope.$emit('facebook-login-error', response);
               });
             });
           });
         } else {
           // The person cancelled the login dialog
-          $rootScope.$emit('event:facebook-login-error', response);
+          $rootScope.$emit('facebook-login-error', response);
         }
       }, {scope: 'email, user_birthday, user_location'});
     },
@@ -86,7 +86,7 @@ facebookServices.factory('Facebook', ['$window', '$rootScope', '$http', 'API_SER
               id: response.id,
               email: response.email
             };
-            $rootScope.$emit('event:fb-social-provider-allowed', user_data);
+            $rootScope.$emit('fb-social-provider-allowed', user_data);
           });
         }
       }, {scope: 'email, user_birthday, user_location'});
@@ -106,10 +106,10 @@ facebookServices.factory('Facebook', ['$window', '$rootScope', '$http', 'API_SER
 
           $http.post('http://' + API_SERVER + '/facebook/login', {user_data: user_data})
           .then(function (response) { // Success
-            $rootScope.$emit('event:facebook-fetch-user-success', response);
+            $rootScope.$emit('facebook-fetch-user-success', response);
           },
           function (response) { // Error
-            $rootScope.$emit('event:facebook-fetch-user-error', response);
+            $rootScope.$emit('facebook-fetch-user-error', response);
           });
         });
       });

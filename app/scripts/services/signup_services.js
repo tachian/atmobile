@@ -53,8 +53,8 @@ signupServices.factory('SignupSteps', ['$routeParams', '$rootScope', '$location'
       category: 'user-action', label: 'step-' + service.currentStep + '-' + version
     });
 
-    $rootScope.$emit('event:signup-step-changed');
-    $rootScope.$emit('event:signup-step-skipped');
+    $rootScope.$emit('signup-step-changed');
+    $rootScope.$emit('signup-step-skipped');
     $location.path('/signup/' + (service.currentStep + 1));
   };
 
@@ -65,7 +65,7 @@ signupServices.factory('SignupSteps', ['$routeParams', '$rootScope', '$location'
   service.setCurrentStep = function(step) {
     service.currentStep = step;
 
-    $rootScope.$emit('event:signup-step-changed');
+    $rootScope.$emit('signup-step-changed');
     $location.path('/signup/' + (service.currentStep + 1));
   };
 

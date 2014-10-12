@@ -1,0 +1,13 @@
+
+.brand { 
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto;
+    z-index: -1;
+}
+
+.icon-back {
+  padding: 15px 5px;
+}

@@ -25,8 +25,8 @@
 	</div>
 
 	<div class="media media-browse" ng-repeat="course in listCourses">
-		<a class="pull-left" ng-href="#/course/{{course.id}}" style='width: 90px; height: 50px;'>
-			<img class="media-object" ng-src="http://cdn.veduca.com.br/uploads/course/{{course.id}}/preview_{{course.id}}.jpg" alt="Responsive image" style='width: 90px; height: 50px;'>
+		<a class="pull-left" ng-href="#/course/{{course.id}}" style='width: 70px; height: 50px;'>
+			<img class="media-object" ng-src="http://tulupa.s3.amazonaws.com/lectures/{{course.lectures[0].id}}.jpg" alt="Responsive image" style='width: 70px; height: 50px;'>
 			<div ng-class="{'icon-brazil': course.subtitles}"></div>
 		</a>
 		<a ng-href="#/course/{{course.id}}">

@@ -19,7 +19,7 @@ googlePlusServices.factory('GooglePlus', ['$window', '$rootScope', '$http', 'API
             id: userinfo.id,
             email: userinfo.email
           };
-          $rootScope.$emit('event:gp-social-provider-allowed', user_data);
+          $rootScope.$emit('gp-social-provider-allowed', user_data);
         });
       });
     }

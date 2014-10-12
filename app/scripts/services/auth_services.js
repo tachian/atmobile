@@ -12,7 +12,7 @@ authServices.factory('AuthCallbacks', ['$rootScope','httpBuffer', function($root
     */
     authConfirmed: function(data, configUpdater) {
       var updater = configUpdater || function(config) {return config;};
-      $rootScope.$emit('event:auth-token-success', data);
+      $rootScope.$emit('auth-token-success', data);
       httpBuffer.retryAll(updater);
     },
 
@@ -24,7 +24,7 @@ authServices.factory('AuthCallbacks', ['$rootScope','httpBuffer', function($root
     */
     authCancelled: function(data, reason) {
       httpBuffer.rejectAll(reason);
-      $rootScope.$emit('event:auth-token-rejected', data);
+      $rootScope.$emit('auth-token-rejected', data);
     }
   };
 }]);
@@ -32,12 +32,12 @@ authServices.factory('AuthCallbacks', ['$rootScope','httpBuffer', function($root
 authServices.config(['$httpProvider', function($httpProvider) {
 
   // Main API Version Header
-  $httpProvider.defaults.headers.common.Accept = 'application/vnd.loosa+json; version=1';
+  $httpProvider.defaults.headers.common.Accept = 'application/vnd.tlp+json; version=1';
 
   $httpProvider.interceptors.push(['$rootScope', '$q', '$injector', 'httpBuffer', 'TokenHandler', function($rootScope, $q, $injector, httpBuffer, tokenHandler) {
     return {
       request: function(config) {
-        $rootScope.$emit('event:load-start');
+        $rootScope.$emit('load-start');
         if(tokenHandler.get() && !config.ignoreAuthModule) {
           config.headers.Authorization = 'Bearer ' + tokenHandler.get();
         }
@@ -47,7 +47,7 @@ authServices.config(['$httpProvider', function($httpProvider) {
         // get $http via $injector because of circular dependency problem
         var $http = $http || $injector.get('$http');
         if ($http.pendingRequests.length < 1) {
-          $rootScope.$emit('event:load-end');
+          $rootScope.$emit('load-end');
         }
         return response || $q.when(response);
       },
@@ -58,7 +58,7 @@ authServices.config(['$httpProvider', function($httpProvider) {
           if(rejection.data.provider === 'application/vnd.loosa') {
             tokenHandler.set(null);
             httpBuffer.append(rejection.config, deferred);
-            $rootScope.$emit('event:auth-token-error', rejection);
+            $rootScope.$emit('auth-token-error', rejection);
             return deferred.promise;
           }
         }
@@ -125,7 +125,7 @@ authHelpers.factory('TokenHandler', [function () {
 
   tokenHandler.set = function(newToken) {
     token = newToken;
-    // cookies.put('_vdc_scratchy_token', token);
+    // cookies.put('_tlp_scratchy_token', token);
   };
 
   tokenHandler.get = function() {

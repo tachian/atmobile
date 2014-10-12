@@ -19,8 +19,8 @@
 
 
 	<div class="media media-browse" mv-complete-lecture ng-repeat="lecture in lectures | orderBy:'order'">
-		<div class="pull-left" style="width: 90px; height: 60px;"> 
-			<img class="media-object" ng-src="http://cdn.veduca.com.br/uploads/lecture/{{lecture.id}}/{{lecture.avatar}}" alt="Responsive image" ng-click="showPlayer(lecture, lecture.currentPart)" style='width: 90px; height: 60px;'>
+		<div class="pull-left" style="width: 70px; height: 60px;"> 
+			<img class="media-object" ng-src="http://tulupa.s3.amazonaws.com/lectures/{{lecture.id}}.jpg" alt="Responsive image" ng-click="showPlayer(lecture, lecture.currentPart)" style='width: 70px; height: 60px;'>
 			<div ng-class="{'icon-brazil': lecture.subtitle != ''}"></div>
 		</div>
 		<a>

@@ -1,16 +1,17 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-mobile" role="navigation" ng-controller="HeaderController">
-  <div class="container-fluid">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="pull-right navbar-toggle" data-toggle="collapse" data-target="#main-menu" ng-if="signed_in()">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-menu" ng-if="signed_in()">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="pull-left" ng-click="history.back()" />
-      <div class="pull-left navbar-brand navbar-brand-mobile">{{title}}</div>
-      <div class="pull-left navbar-brand navbar-brand-mobile">{{}}</div>
+      <div tlp-back>
+        <div class="pull-left navbar-brand navbar-brand-mobile icon-back glyphicon glyphicon-chevron-left" ng-if="showBackButton()"></div>
+      </div>
+      <div class="brand navbar-brand navbar-brand-mobile">{{title}}</div>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,7 +20,7 @@
         <li><a data-toggle="collapse" data-target="#main-menu" href="#/subjects">Assuntos</a></li>
         <li><a data-toggle="collapse" data-target="#main-menu" href="#/universities">Universidades</a></li>
         <li><a data-toggle="collapse" data-target="#main-menu" href="#/myCourses">Meus Cursos</a></li>
-        <li><a data-toggle="collapse" data-target="#main-menu" href='' vdc-logout>Sair</a></li>
+        <li><a data-toggle="collapse" data-target="#main-menu" href='' tlp-logout>Sair</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

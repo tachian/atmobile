@@ -36,7 +36,7 @@ linkedinServices.factory('LinkedIn', ['$window', '$rootScope', '$http', 'API_SER
           id: result.values[0].id,
           email: result.values[0].emailAddress
         };
-        $rootScope.$emit('event:ln-social-provider-allowed', user_data);
+        $rootScope.$emit('ln-social-provider-allowed', user_data);
       });
     }
   };

@@ -17,7 +17,7 @@ userControllers.controller('UserController', ['$scope', '$routeParams', 'Session
 
   if(angular.isDefined($routeParams.reset_passoword_token)) {
     $scope.user.reset_password_token = $routeParams.reset_passoword_token;
-    $scope.$emit('event:reset-password', $routeParams.reset_passoword_token);
+    $scope.$emit('reset-password', $routeParams.reset_passoword_token);
   }
 
   $scope.signed_in = function () {
@@ -114,8 +114,8 @@ userControllers.controller('UserController', ['$scope', '$routeParams', 'Session
   };
 
   $scope.fromLoginToSignup = function() {
-    $scope.$emit('event:login-close');
-    $scope.$emit('event:signup-open');
+    $scope.$emit('login-close');
+    $scope.$emit('signup-open');
   };
 
 }]);

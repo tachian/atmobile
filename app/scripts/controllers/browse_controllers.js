@@ -58,9 +58,7 @@ browseControllers.controller('UniversityController', ['$scope', '$routeParams', 
 browseControllers.controller('MyCoursesController', ['$scope', '$http', '$location', 'Users', 'Session',
   function ($scope, $http, $location, Users, Session) {
     
-    $scope.current_user = function () { 
-      return Session.currentUser; 
-    };
+    $scope.current_user = Session.currentUser;
 
     $scope.listCourses = [];
 
@@ -80,6 +78,7 @@ browseControllers.controller('MyCoursesController', ['$scope', '$http', '$locati
             course.total_parts = visit.total_parts;
             course.course_id = visit.course_id;
             course.visiteds = 1;
+            course.image = visit.image;
             $scope.listCourses.push(course);
           }
           else
@@ -211,6 +210,9 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
 
 
     $scope.destroyPlayer = function(){
+      window.localStorage.setItem('_tlp_player_' + $scope.currentLecture.part.id, JSON.stringify({
+        time: $scope.player.currentTime()}
+        ));
       $scope.currentLecture = "";
     };
 

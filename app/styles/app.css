@@ -75,6 +75,16 @@ li.browse-list {
   box-shadow: 2px 2px 2px #888888;
 }
 
+.media.media-browse-first-login {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px 5px 5px 5px;
+  box-shadow: 2px 2px 2px #888888;
+  text-align: center;
+}
+
 .browse-inf{
   font-size: 10px;
 }
@@ -160,11 +170,12 @@ li.browse-list {
 
 
 .video-overlay {
-  position: absolute;
+  position:fixed;
   top: 0;
   left: 0;
-  bottom: 0;
   z-index: 10000;
+  padding:0;
+  margin:0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);

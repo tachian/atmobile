@@ -8,11 +8,11 @@
 </div>
 
 <div  ng-controller="UserController" ng-cloak>
-  <div vdc-login>
+  <div tlp-login>
     <form accept-charset="UTF-8" role="form" id="login_form" name="login_form" novalidate="novalidate" ng-submit="login();">
       <div class='row-fluid'>
         <div class="col-xs-3">
-          <div data-target="#facebook" class="btn btn-link" vdc-facebook-login>
+          <div data-target="#facebook" class="btn btn-link" tlp-facebook-login>
             <i class="iconx-fb-login"></i>
           </div>
         </div>
@@ -27,13 +27,13 @@
 
             <div class="control-group user_email">
               <div class="form-group">
-                <input class="string input-field input-full" ng-model="user.email" required ng-focus="login_form.email.$blur = false" ng-blur="login_form.email.$blur = true" id="user_email" name="email" placeholder="email" size="25" type="email" vdc-auto-fillable-field />
+                <input class="string input-field input-full" ng-model="user.email" required ng-focus="login_form.email.$blur = false" ng-blur="login_form.email.$blur = true" id="user_email" name="email" placeholder="email" size="25" type="email" tlp-auto-fillable-field />
               </div>
             </div>
 
             <div class="control-group user_password">
               <div class="form-group">
-                <input class="input-field input-full" ng-model="user.password" required ng-focus="login_form.password.$blur = false" ng-blur="login_form.password.$blur = true" ng-minlength="6" id="user_password" name="password" placeholder="senha" size="25" type="password" vdc-auto-fillable-field />
+                <input class="input-field input-full" ng-model="user.password" required ng-focus="login_form.password.$blur = false" ng-blur="login_form.password.$blur = true" ng-minlength="6" id="user_password" name="password" placeholder="senha" size="25" type="password" tlp-auto-fillable-field />
               </div>
             </div>
 
@@ -54,7 +54,6 @@
 
   <!-- Modals -->
   <div class="l-signup" ng-include=" 'views/shared/signup.html' " ng-cloak></div>
-  <div class="l-signup-success" ng-include=" 'views/shared/signup-success.html' " ng-cloak></div>
   <div class="l-forgot" ng-include=" 'views/shared/forgot-password.html' " ng-cloak></div>
   <div class="l-forgot-success" ng-include=" 'views/shared/forgot-password-success.html' " ng-cloak></div>
   <div class="l-reset-password" ng-include=" 'views/shared/reset-password.html' " ng-cloak></div>
@@ -63,5 +62,5 @@
 </div>
 
 <!-- Helpers -->
-<span vdc-modal-helper ng-cloak></span>
+<span tlp-modal-helper ng-cloak></span>
 

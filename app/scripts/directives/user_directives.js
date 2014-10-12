@@ -3,17 +3,17 @@
 var userDirectives = angular.module('userDirectives', []);
 
 // Login
-userDirectives.directive('vdcLogin', ['$rootScope', '$route', '$location', function($rootScope, $route, $location) {
+userDirectives.directive('tlpLogin', ['$rootScope', '$route', '$location', function($rootScope, $route, $location) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
       $scope.login_form.$setPristine();
 
-      $rootScope.$on('event:login-close', function (event) {
+      $rootScope.$on('login-close', function (event) {
         $scope.login_form.$setPristine();
       });
 
-      $rootScope.$on('event:login-error', function (event, data) {
+      $rootScope.$on('login-error', function (event, data) {
         if(data) {
           handleLoginErrorMessages(data.errors);
         } else {
@@ -38,11 +38,23 @@ userDirectives.directive('vdcLogin', ['$rootScope', '$route', '$location', funct
         $scope.showErrors = true;
       };
 
-      $rootScope.$on('event:login-success', function (event) { login_success(event); });
+      $rootScope.$on('login-success', function (event) {
+        login_success(event);
+        if($rootScope.$$listeners['login-success'].length > 1){
+          $rootScope.$$listeners['login-success'].pop(1);
+        }
+      });
 
-      $rootScope.$on('event:facebook-login-success', function (event) { login_success(event); });
+      $rootScope.$on('facebook-login-success', function (event) {
+        login_success(event);
+        if($rootScope.$$listeners['facebook-login-success'].length > 1){
+          $rootScope.$$listeners['facebook-login-success'].pop(1);
+        }
+      });
 
-      $rootScope.$on('event:confirmation_redirect_mba', function (event, data) { $location.path(data); });
+      $rootScope.$on('confirmation_redirect_mba', function (event, data) {
+        $location.path(data); 
+      });
 
       $scope.user_confirmed();
 
@@ -51,7 +63,7 @@ userDirectives.directive('vdcLogin', ['$rootScope', '$route', '$location', funct
 }]);
 
 // Facebook Login
-userDirectives.directive('vdcFacebookLogin', ['$rootScope', '$route', function ($rootScope, $route) {
+userDirectives.directive('tlpFacebookLogin', ['$rootScope', '$route', function ($rootScope, $route) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
@@ -63,13 +75,13 @@ userDirectives.directive('vdcFacebookLogin', ['$rootScope', '$route', function (
 }]);
 
 // Sign up
-userDirectives.directive('vdcSignup', ['$rootScope', '$analytics', function ($rootScope, $analytics) {
+userDirectives.directive('tlpSignup', ['$rootScope', '$analytics', '$location', function ($rootScope, $analytics, $location) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
       $scope.errors = {};
 
-      $rootScope.$on('event:signup-open', function (event, data) {
+      $rootScope.$on('signup-open', function (event, data) {
         $scope.errors = {};
         $scope.register_form.$setPristine();
         $scope.resetForm();
@@ -80,7 +92,7 @@ userDirectives.directive('vdcSignup', ['$rootScope', '$analytics', function ($ro
         });
       });
 
-      $rootScope.$on('event:signup-close', function (event, data) {
+      $rootScope.$on('signup-close', function (event, data) {
         $scope.errors = {};
         $scope.register_form.$setPristine();
         $scope.resetForm();
@@ -91,7 +103,7 @@ userDirectives.directive('vdcSignup', ['$rootScope', '$analytics', function ($ro
         });
       });
 
-      $rootScope.$on('event:signup-error', function (event, data) {
+      $rootScope.$on('signup-error', function (event, data) {
         angular.forEach(data.errors, function (value, key) {
           $scope.errors[key] = key + ' ' + value[0];
         });
@@ -106,16 +118,23 @@ userDirectives.directive('vdcSignup', ['$rootScope', '$analytics', function ($ro
       function signup_success(event) {
         $scope.showErrors = false;
         $scope.register_form.$setPristine();
-        element.modal('hide');
-        // $scope.show_current_user();
+        element.addClass('hide');
+        $scope.show_current_user();
 
         $analytics.eventTrack('finish', { 
           category: 'user-action', label: 'signup'
         });
+
+        //TODO: Ver alternativa para remover modal-backdrop. Isso ocorre por causa do location.path. 
+        //Está trocando de página numa chamada assincrona sem fechar a modal.
+        $('.modal-backdrop').remove();
+        $location.path('/myCourses');
       }
 
-      $rootScope.$on('event:signup-success', function (event) { signup_success(event); });
-      $rootScope.$on('event:facebook-login-success', function (event) { signup_success(event); });
+      $rootScope.$on('signup-success', function (event) {
+         signup_success(event); 
+      });
+      $rootScope.$on('facebook-login-success', function (event) { signup_success(event); });
 
       angular.element('.close').bind('click', function (event) {
         $scope.showErrors = false;
@@ -132,26 +151,24 @@ userDirectives.directive('vdcSignup', ['$rootScope', '$analytics', function ($ro
 }]);
 
 // SIgn up success
-userDirectives.directive('vdcSignupSuccess', ['$rootScope', function ($rootScope) {
+userDirectives.directive('tlpSignupSuccess', ['$rootScope', '$location', function ($rootScope, $location) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
-      var config = {skip_success: false};
+      var config = {skip_success: true};
 
-      $rootScope.$on('event:signup-config', function (event, data) {
+      $rootScope.$on('signup-config', function (event, data) {
         config = data;
       });
 
-      $rootScope.$on('event:signup-error', function (event) {
+      $rootScope.$on('signup-error', function (event) {
         element.modal('hide');
       });
 
-      $rootScope.$on('event:signup-success', function (event, email) {
+      $rootScope.$on('signup-success', function (event, email) {
         if(!config.skip_success) {
           $scope.email = email;
           element.modal('show');
-        } else {
-          element.modal('hide');
         }
       });
     }
@@ -159,18 +176,18 @@ userDirectives.directive('vdcSignupSuccess', ['$rootScope', function ($rootScope
 }]);
 
 // Forgot password
-userDirectives.directive('vdcForgotPassword', ['$rootScope', function ($rootScope) {
+userDirectives.directive('tlpForgotPassword', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
-      $rootScope.$on('event:password-recovery-error', function (event) {
+      $rootScope.$on('password-recovery-error', function (event) {
         // $scope.resetForm();
         $scope.showErrors = true;
         element.modal('show');
         element.find('#error_message').removeClass('hidden')
       });
 
-      $rootScope.$on('event:password-recovery-success', function (event) {
+      $rootScope.$on('password-recovery-success', function (event) {
         $scope.showErrors = false;
         $scope.resetForm();
         $scope.forgot_form.$setPristine();
@@ -184,15 +201,15 @@ userDirectives.directive('vdcForgotPassword', ['$rootScope', function ($rootScop
 }]);
 
 // Forgot password success
-userDirectives.directive('vdcForgotPasswordSuccess', ['$rootScope', function ($rootScope) {
+userDirectives.directive('tlpForgotPasswordSuccess', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
-      $rootScope.$on('event:password-recovery-error', function (event) {
+      $rootScope.$on('password-recovery-error', function (event) {
         element.modal('hide');
       });
 
-      $rootScope.$on('event:password-recovery-success', function (event) {
+      $rootScope.$on('password-recovery-success', function (event) {
         element.modal('show');
       });
     }
@@ -200,18 +217,18 @@ userDirectives.directive('vdcForgotPasswordSuccess', ['$rootScope', function ($r
 }]);
 
 // Resend confirmation mail
-userDirectives.directive('vdcResendConfirmation', ['$rootScope', function ($rootScope) {
+userDirectives.directive('tlpResendConfirmation', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
-      $rootScope.$on('event:resend-confirmation-error', function (event) {
+      $rootScope.$on('resend-confirmation-error', function (event) {
         $scope.resetForm();
         $scope.showErrors = true;
         element.modal('show');
         element.find('#error_message').show();
       });
 
-      $rootScope.$on('event:resend-confirmation-success', function (event) {
+      $rootScope.$on('resend-confirmation-success', function (event) {
         $scope.showErrors = false;
         $scope.resend_confirmation.$setPristine();
         element.find('#error_message').hide();
@@ -223,15 +240,15 @@ userDirectives.directive('vdcResendConfirmation', ['$rootScope', function ($root
 }]);
 
 // Resend confirmation mail success
-userDirectives.directive('vdcResendConfirmationSuccess', ['$rootScope', function ($rootScope) {
+userDirectives.directive('tlpResendConfirmationSuccess', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
-      $rootScope.$on('event:resend-confirmation-error', function (event) {
+      $rootScope.$on('resend-confirmation-error', function (event) {
         element.modal('hide');
       });
 
-      $rootScope.$on('event:resend-confirmation-success', function (event) {
+      $rootScope.$on('resend-confirmation-success', function (event) {
         element.modal('show');
       });
     }
@@ -239,15 +256,15 @@ userDirectives.directive('vdcResendConfirmationSuccess', ['$rootScope', function
 }]);
 
 // Logout
-userDirectives.directive('vdcLogout', ['$rootScope', function ($rootScope) {
+userDirectives.directive('tlpLogout', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
-      $rootScope.$on('event:logout-error', function (event) {
+      $rootScope.$on('logout-error', function (event) {
         $scope.showErrors = true;
       });
 
-      $rootScope.$on('event:logout-success', function (event) {
+      $rootScope.$on('logout-success', function (event) {
         $scope.showErrors = false;
       });
 
@@ -260,33 +277,33 @@ userDirectives.directive('vdcLogout', ['$rootScope', function ($rootScope) {
   };
 }]);
 
-userDirectives.directive('vdcProfileMenu', ['$rootScope', function ($rootScope) {
+userDirectives.directive('tlpProfileMenu', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'E',
     link: function($scope, element, attrs) {
-      $rootScope.$on('event:fetch-user-success', function (event) {});
+      $rootScope.$on('fetch-user-success', function (event) {});
     }
   };
 }]);
 
-userDirectives.directive('vdcResetPassword', ['$rootScope', '$location', function ($rootScope, $location) {
+userDirectives.directive('tlpResetPassword', ['$rootScope', '$location', function ($rootScope, $location) {
   return {
     restrict: 'A',
     link: function($scope, element, attrs) {
-      $rootScope.$on('event:reset-password', function (event, reset_password_token) {
+      $rootScope.$on('reset-password', function (event, reset_password_token) {
         $scope.showErrors = false;
         $scope.reset_form.$setPristine();
         $scope.user.reset_password_token = reset_password_token;
         element.modal('show');
       });
 
-      $rootScope.$on('event:password-set-success', function (event) {
+      $rootScope.$on('password-set-success', function (event) {
         $scope.showErrors = false;
         element.modal('hide');
         $location.path('/');
       });
 
-      $rootScope.$on('event:password-set-error', function (event) {
+      $rootScope.$on('password-set-error', function (event) {
         $scope.showErrors = true;
         element.modal('show');
       });

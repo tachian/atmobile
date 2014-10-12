@@ -26,11 +26,11 @@ headerControllers.controller('HeaderController', ['$rootScope', '$scope', 'Sessi
   };
 
   $scope.openLogin = function() {
-    $rootScope.$emit('event:login-open');
+    $rootScope.$emit('login-open');
   };
 
   $scope.openSignUp = function() {
-    $rootScope.$emit('event:signup-open');
+    $rootScope.$emit('signup-open');
   };
 
   $scope.userHasMbaEnrollment = function () {
@@ -44,5 +44,12 @@ headerControllers.controller('HeaderController', ['$rootScope', '$scope', 'Sessi
   $scope.userHasPhone = function() {
     return Session.userHasField('phone');
   };
+
+  $scope.showBackButton = function() {
+    return ($rootScope.currentPath != "/myCourses" && 
+            $rootScope.currentPath != "/subjects" && 
+            $rootScope.currentPath != "/universities" &&
+            $rootScope.currentPath != "/");
+  }
 
 }]);

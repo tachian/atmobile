@@ -14,11 +14,11 @@ homeControllers.controller('HomeController', ['$scope', '$rootScope', '$location
     };
 
     $scope.openSignUp = function() {
-      $rootScope.$emit('event:signup-open');
+      $rootScope.$emit('signup-open');
     };
 
     $scope.openLogin = function() {
-  	  $rootScope.$emit('event:login-open');
+  	  $rootScope.$emit('login-open');
   	};
   }
 ]);

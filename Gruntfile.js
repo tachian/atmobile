@@ -54,7 +54,7 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/{*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -274,7 +274,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'fonts/*',
+            'config.xml'
           ]
         }, {
           expand: true,
@@ -350,30 +351,31 @@ module.exports = function (grunt) {
         },
         constants: {
           API_SERVER: 'localhost:3000',
-          FACEBOOK_APP_ID: '480777411990299',
-          LINKEDIN_APP_ID: '75l9o6qhoa6wlp',
-          TWITTER_APP_ID: 'xxx',
-          GOOGLE_APP_ID: '668978013443-l8bpqijgota451ffj2lf1l7jt71cvurd.apps.googleusercontent.com',
-          GOOGLE_API_KEY: 'AIzaSyAUvOQ0-UszgZZ4QYBfX1CxQJDJkyIPMhc',
-          GOOGLE_ANALYTICS_ID: 'UA-25246260-4'
+          FACEBOOK_APP_ID: '',
+          LINKEDIN_APP_ID: '',
+          TWITTER_APP_ID: '',
+          GOOGLE_APP_ID: '',
+          GOOGLE_API_KEY: '',
+          GOOGLE_ANALYTICS_ID: 'UA-55659901-1'
+
+          // FACEBOOK_APP_ID: '480777411990299',
+          // LINKEDIN_APP_ID: '75l9o6qhoa6wlp',
+          // TWITTER_APP_ID: 'xxx',
+          // GOOGLE_APP_ID: '668978013443-l8bpqijgota451ffj2lf1l7jt71cvurd.apps.googleusercontent.com',
+          // GOOGLE_API_KEY: 'AIzaSyAUvOQ0-UszgZZ4QYBfX1CxQJDJkyIPMhc',
+          // GOOGLE_ANALYTICS_ID: 'UA-25246260-4'
         }
       },
-      staging: {
-        options: {
-          dest: '<%= yeoman.dist %>/scripts/config.js',
-          name: 'appConfig',
-          space: '\t'
-        },
-        constants: {
-          API_SERVER: 'itchy-staging.herokuapp.com',
-          FACEBOOK_APP_ID: '102806313255018',
-          LINKEDIN_APP_ID: '75l9o6qhoa6wlp',
-          TWITTER_APP_ID: 'xxx',
-          GOOGLE_APP_ID: '326935466624-s29maqlnlvitihs2o7bhsdf017m7qjmt.apps.googleusercontent.com',
-          GOOGLE_API_KEY: 'AIzaSyBZHYTsuDWzh_TmsweOED2Z3OZNGc-C84A',
-          GOOGLE_ANALYTICS_ID: 'UA-25246260-4'
-        }
-      },
+      // staging: {
+      //   options: {
+      //     dest: '<%= yeoman.dist %>/scripts/config.js',
+      //     name: 'appConfig',
+      //     space: '\t'
+      //   },
+      //   constants: {
+      //     API_SERVER: 'itchy-staging.herokuapp.com'
+      //   }
+      // },
       production: {
         options: {
           dest: '<%= yeoman.dist %>/scripts/config.js',
@@ -381,13 +383,13 @@ module.exports = function (grunt) {
           space: '\t'
         },
         constants: {
-          API_SERVER: 'itchy.herokuapp.com',
-          FACEBOOK_APP_ID: '591346657542260',
-          LINKEDIN_APP_ID: '75kucqybs07ww5',
-          TWITTER_APP_ID: 'xxx',
-          GOOGLE_APP_ID: '288025622949-thqrulec4et6dd9t6sn7dlqhhs2acmha.apps.googleusercontent.com',
-          GOOGLE_API_KEY: 'AIzaSyD_2uTVEVO6Plu9N0HlQp51RkVUpe3kbsg',
-          GOOGLE_ANALYTICS_ID: 'UA-25246260-3'
+          API_SERVER: 'tulupaapi.herokuapp.com',
+          FACEBOOK_APP_ID: '',
+          LINKEDIN_APP_ID: '',
+          TWITTER_APP_ID: '',
+          GOOGLE_APP_ID: '',
+          GOOGLE_API_KEY: '',
+          GOOGLE_ANALYTICS_ID: 'UA-55659901-1'
         }
       }
     }
@@ -427,24 +429,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     // 'bowerInstall',
-    'ngconstant:staging',
-    'useminPrepare',
-    'concurrent:dist',
-    'autoprefixer',
-    'concat',
-    'ngmin',
-    'copy:dist',
-    'cdnify',
-    'cssmin',
-    'uglify',
-    'rev',
-    'usemin',
-    'htmlmin'
-  ]);
-
-  grunt.registerTask('build:production', [
-    'clean:dist',
-    // 'bowerInstall',
     'ngconstant:production',
     'useminPrepare',
     'concurrent:dist',
@@ -459,6 +443,24 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin'
   ]);
+
+  // grunt.registerTask('build:production', [
+  //   'clean:dist',
+  //   // 'bowerInstall',
+  //   'ngconstant:production',
+  //   'useminPrepare',
+  //   'concurrent:dist',
+  //   'autoprefixer',
+  //   'concat',
+  //   'ngmin',
+  //   'copy:dist',
+  //   'cdnify',
+  //   'cssmin',
+  //   'uglify',
+  //   'rev',
+  //   'usemin',
+  //   'htmlmin'
+  // ]);
 
   grunt.registerTask('default', [
     'newer:jshint',

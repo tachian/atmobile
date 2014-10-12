@@ -22,7 +22,8 @@ var atmobileApp = angular.module('atmobileApp', [
   'playerDirectives',
   'helperDirectives',
   'userDirectives',
-  'browseDirectives'
+  'browseDirectives',
+  'headerDirectives'
 ]);
 
 atmobileApp.config(['$routeProvider', '$locationProvider', '$provide',
@@ -104,20 +105,6 @@ atmobileApp.config(['$routeProvider', '$locationProvider', '$provide',
           }]
         }
       }).
-      when('/mba', {
-        templateUrl: 'views/browse/mba.html',
-        controller: 'MbaController',
-        resolve: {
-          getSession: ['Session', function (Session) {
-            return Session.getCurrentUser();
-          }],
-          layout: [function () {
-            return {
-              header: 'views/header/index.html'
-            };
-          }]
-        }
-      }).
       when('/course/:id', {
         templateUrl: 'views/browse/lectures.html',
         controller: 'LecturesController',
@@ -186,7 +173,7 @@ atmobileApp.run(['$rootScope', '$location', '$http', 'TokenHandler', 'AuthCallba
   }
 
   // Get a token from API if client not authorized
-  $rootScope.$on('event:auth-token-error',
+  $rootScope.$on('auth-token-error',
     function (event, rejection) {
       if(!TokenHandler.get()) {
         $http.post('/oauth/authorize', {}, {ignoreAuthModule: true}).success(

@@ -2,7 +2,7 @@
 
 var helperDirectives = angular.module('helperDirectives', []);
 
-helperDirectives.directive('vdcModalHelper', ['$rootScope', function ($rootScope) {
+helperDirectives.directive('tlpModalHelper', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'A',
     link: function ($scope, element, attrs) {
@@ -45,7 +45,7 @@ helperDirectives.directive('vdcModalHelper', ['$rootScope', function ($rootScope
       //   });
       // });
 
-      $scope.$on('event:close-all-modals', function(){
+      $scope.$on('close-all-modals', function(){
         hideCurrentModal();
         angular.element('.modal-backdrop.in').hide();
       });

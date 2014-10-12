@@ -10,7 +10,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
   }
 
   // Try to get user from facebook if user connected
-  $rootScope.$on('event:facebook-connected', function (event, credentials) {
+  $rootScope.$on('facebook-connected', function (event, credentials) {
     // if (!service.isAuthenticated()) {
     //   Facebook.getUserData(credentials);
     // }
@@ -18,7 +18,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
   });
 
   // Try to get user from facebook if user connected
-  $rootScope.$on('event:facebook-login-success', function (event, data) {
+  $rootScope.$on('facebook-login-success', function (event, data) {
     if (!service.isAuthenticated()) {
       service.populateUserFromFacebook(data);
     }
@@ -26,14 +26,14 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
   });
 
   // Try to get user from facebook after login
-  $rootScope.$on('event:facebook-fetch-user-success', function (event, data) {
+  $rootScope.$on('facebook-fetch-user-success', function (event, data) {
     if (!service.isAuthenticated()) {
       service.populateUserFromFacebook(data);
     }
     event.stopPropagation();
   });
 
-  $rootScope.$on('event:fetch-user-success', function (event, data) {
+  $rootScope.$on('fetch-user-success', function (event, data) {
     if (service.isAuthenticated()) {
       //TODO: login - ajustar pesquisa inicial
       //service.stepRedirection();
@@ -41,7 +41,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
   });
 
   // Step redirection
-  $rootScope.$on('event:new-signup-progress', function (event, data) { 
+  $rootScope.$on('new-signup-progress', function (event, data) { 
     $location.path('/signup/' + data); 
   });
 
@@ -53,11 +53,11 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
       .then(function (response) { // Success
         service.populateUser(response.data);
         if (service.isAuthenticated()) {
-          $rootScope.$emit('event:login-success');
+          $rootScope.$emit('login-success');
         }
       },
       function (response) { // Error
-        $rootScope.$emit('event:login-error', response.data);
+        $rootScope.$emit('login-error', response.data);
       });
     },
 
@@ -73,7 +73,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
         }
       },
       function (response) { // Error
-        $rootScope.$emit('event:impersonate-login-error', response.data);
+        $rootScope.$emit('impersonate-login-error', response.data);
       });
     },
 
@@ -103,7 +103,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
         'X-User-Email': service.currentUser.email
       }}).then(function (response) {
         service.populateUser(null);
-        $rootScope.$emit('event:logout-success');
+        $rootScope.$emit('logout-success');
         redirect('/');
       });
     },
@@ -111,23 +111,25 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
     register: function(name, email, phone, password) {
       return $http.post('http://' + API_SERVER + '/register', {user: {name: name, email: email, password: password}})
       .then(function (response) { // Success
-        // service.populateUser(response.data);
-        // if (service.isAuthenticated()) {
-          $rootScope.$emit('event:signup-success', email);
-        // }
+        service.populateUser(response.data);
+        if (service.isAuthenticated()) {
+          $rootScope.$emit('signup-success', email);
+          return true;
+        }
       },
       function (response) { // Error
-        $rootScope.$emit('event:signup-error', response.data);
+        $rootScope.$emit('signup-error', response.data);
+        return false;
       });
     },
 
     recover: function(email) {
       return $http.post('http://' + API_SERVER + '/password', {user: {email: email}})
       .then(function (response) { // Success
-        $rootScope.$emit('event:password-recovery-success');
+        $rootScope.$emit('password-recovery-success');
       },
       function (response) { // Error
-        $rootScope.$emit('event:password-recovery-error', response.data);
+        $rootScope.$emit('password-recovery-error', response.data);
       });
     },
 
@@ -135,11 +137,11 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
       return $http.put('http://' + API_SERVER + '/password', {user: {reset_password_token: reset_password_token, password: password, password_confirmation: password_confirmation}})
       .then(function (response) { // Success
         service.populateUser(response.data);
-        $rootScope.$emit('event:login-success');
-        $rootScope.$emit('event:password-set-success');
+        $rootScope.$emit('login-success');
+        $rootScope.$emit('password-set-success');
       },
       function (response) { // Error
-        $rootScope.$emit('event:password-set-error', response.data);
+        $rootScope.$emit('password-set-error', response.data);
       });
     },
 
@@ -147,17 +149,17 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
       return $http.post('http://' + API_SERVER + '/confirmation/resend', {user: {email: email}})
       .then(function (response) { // Success
         // service.populateUser(response.data);
-        $rootScope.$emit('event:resend-confirmation-success');
+        $rootScope.$emit('resend-confirmation-success');
       },
       function (response) { // Error
-        $rootScope.$emit('event:resend-confirmation-error', response.data);
+        $rootScope.$emit('resend-confirmation-error', response.data);
       });
     },
 
     getCurrentUser: function() {
       // if user already authenticated, return it
       if (service.isAuthenticated()) {
-        $rootScope.$emit('event:fetch-user-success');
+        $rootScope.$emit('fetch-user-success');
         return $q.when(service.currentUser);
       } else {
         // if not, check to see if cookie exists and get user from there
@@ -171,20 +173,20 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
               'X-User-Email': cookie_user.email
             }}).then(function (response) { // Success
               service.populateUser(response.data);
-              $rootScope.$emit('event:fetch-user-success');
+              $rootScope.$emit('fetch-user-success');
             },
             function (response) { // Error
               service.populateUser(null);
-              $rootScope.$emit('event:fetch-user-error', response.data);
+              $rootScope.$emit('fetch-user-error', response.data);
               return false;
             });
           } else {
-            window.localStorage.removeItem('_vdc_current_user');
-            $rootScope.$emit('event:fetch-user-error', {errors: ['cookie is old']});
+            window.localStorage.removeItem('_tlp_current_user');
+            $rootScope.$emit('fetch-user-error', {errors: ['cookie is old']});
             return false;
           }
         } else {
-          $rootScope.$emit('event:fetch-user-error', {errors: ['no user from cookie']});
+          $rootScope.$emit('fetch-user-error', {errors: ['no user from cookie']});
           return false;
         }
       }
@@ -195,7 +197,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
       if(angular.isObject(window.localStorage.getItem('_tlp_confirmation_success'))) {
         var confirmation_cookie = JSON.parse(window.localStorage.getItem('_tlp_confirmation_success'));
         if (confirmation_cookie.status) {
-          $rootScope.$emit('event:login-open', {confirmation: true});
+          $rootScope.$emit('login-open', {confirmation: true});
           window.localStorage.removeItem('_tlp_confirmation_success');
           service.handleConfirmationForMba();
           return true;
@@ -211,7 +213,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
         var mba_registration_proccess = JSON.parse(window.localStorage.getItem('_tlp_mba_registration'));
         if (mba_registration_proccess.status) {
           window.localStorage.removeItem('_tlp_mba_registration');
-          $rootScope.$emit('event:confirmation_redirect_mba', mba_registration_proccess.url);
+          $rootScope.$emit('confirmation_redirect_mba', mba_registration_proccess.url);
         }
       }
 
@@ -265,7 +267,7 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
     populateUserFromFacebook: function(data) {
       if (!service.isAuthenticated()) {
         service.populateUser(data.data);
-        $rootScope.$emit('event:fetch-user-success');
+        $rootScope.$emit('fetch-user-success');
       }
     },
 
@@ -297,18 +299,18 @@ sessionServices.factory('Session', ['$location', '$http', '$q' ,'$rootScope', 'F
           // console.log('User has a profile step');
           if(service.currentUser.user_profile.step < 5) {
             // console.log('User profile step < 5');
-            $rootScope.$emit('event:new-signup-progress', service.currentUser.user_profile.step);
+            $rootScope.$emit('new-signup-progress', service.currentUser.user_profile.step);
           } else {
             // console.log('User profile step >= 5');
             return false;
           }
         } else {
           // console.log('User has no profile step');
-          $rootScope.$emit('event:new-signup-progress', 1);
+          $rootScope.$emit('new-signup-progress', 1);
         }
       } else {
         // console.log('User has no profile');
-        $rootScope.$emit('event:new-signup-progress', 1);
+        $rootScope.$emit('new-signup-progress', 1);
       }
     }
 
