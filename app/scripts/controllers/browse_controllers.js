@@ -211,7 +211,7 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
 
     $scope.destroyPlayer = function(){
       window.localStorage.setItem('_tlp_player_' + $scope.currentLecture.part.id, JSON.stringify({
-        time: $scope.player.currentTime()}
+        time: this.player.currentTime()}
         ));
       $scope.currentLecture = "";
     };

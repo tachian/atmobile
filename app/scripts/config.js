@@ -2,7 +2,7 @@ angular.module("appConfig", [])
 
 .constant("API_SERVER", "localhost:3000")
 
-.constant("FACEBOOK_APP_ID", "")
+.constant("FACEBOOK_APP_ID", "1558925664339512")
 
 .constant("LINKEDIN_APP_ID", "")
 

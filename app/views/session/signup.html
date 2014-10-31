@@ -1,4 +1,4 @@
-<div class="modal fade" id="signup-box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" vdc-signup>
+<div class="modal fade" id="signup-box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" tlp-signup>
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class='modal-header' style="padding: 10px 10px 0px 15px;">
@@ -17,7 +17,7 @@
                     <div class="col-md-6 col-md-offset-3">
                       <div class="control-group user_name" ng-class="{error: (errors.name && register_form.name.$blur && !register_form.name.$dirty)}">
                         <div class="form-group">
-                          <input class="string input-field input-full" ng-model="user.name" required ng-focus="register_form.name.$blur = false" ng-blur="register_form.name.$blur = true" ng-minlength="3" id="user_name" name="name" placeholder="nome e sobrenome" size="30" type="text" vdc-auto-fillable-field />
+                          <input class="string input-field input-full" ng-model="user.name" required ng-focus="register_form.name.$blur = false" ng-blur="register_form.name.$blur = true" ng-minlength="3" id="user_name" name="name" placeholder="nome e sobrenome" size="30" type="text" tlp-auto-fillable-field />
                           <span class="help-inline" ng-if="(errors.name && register_form.name.$blur && !register_form.name.$dirty)">{{errors.name}}</span>
                         </div>
                       </div>
@@ -26,7 +26,7 @@
                     <div class="col-md-6 col-md-offset-3">
                       <div class="control-group user_email" ng-class="{error: (errors.email && register_form.email.$blur && !register_form.email.$dirty)}">
                         <div class="form-group">
-                          <input class="string input-field input-full" ng-model="user.email" required ng-focus="register_form.email.$blur = false" ng-blur="register_form.email.$blur = true" id="user_email" name="email" placeholder="email" size="30" type="email" vdc-auto-fillable-field />
+                          <input class="string input-field input-full" ng-model="user.email" required ng-focus="register_form.email.$blur = false" ng-blur="register_form.email.$blur = true" id="user_email" name="email" placeholder="email" size="30" type="email" tlp-auto-fillable-field />
                           <span class="help-inline" ng-if="(errors.email && register_form.email.$blur && !register_form.email.$dirty)">{{errors.email}}</span>
                         </div>
                       </div>
@@ -35,24 +35,13 @@
                     <div class="col-md-6 col-md-offset-3">
                       <div class="control-group user_password" ng-class="{error: (errors.password && register_form.password.$blur && !register_form.password.$dirty)}">
                         <div class="form-group">
-                          <input class="input-field input-full" ng-model="user.password" required ng-focus="register_form.password.$blur = false" ng-blur="register_form.password.$blur = true" ng-minlength="6" id="user_password" name="password" placeholder="senha" size="30" type="password" vdc-auto-fillable-field />
+                          <input class="input-field input-full" ng-model="user.password" required ng-focus="register_form.password.$blur = false" ng-blur="register_form.password.$blur = true" ng-minlength="6" id="user_password" name="password" placeholder="senha" size="30" type="password" tlp-auto-fillable-field />
                           <span class="help-inline" ng-if="(errors.password && register_form.password.$blur && !register_form.password.$dirty)">{{errors.password}}</span>
                         </div>
                       </div>
                     </div>
 
               </fieldset>
-              <p>
-                <!-- TODO: Must implement pages userterms.html e privacy.html -->
-<!--                 Ao cadastrar-se, você concorda com nossos
-                <a href='useterms' target='blank'>
-                  termos de uso
-                </a>
-                e
-                <a href='privacy' target='blank'>
-                  política de privacidade
-                </a> -->
-              </p>
               <div class='l-row'>
                 <input type="submit" class="btn btn-vd btn-primary" id="btn-register" name="commit" value="Cadastrar" ng-disabled="!register_form.$valid" />
               </div>

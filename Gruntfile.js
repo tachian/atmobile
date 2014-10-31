@@ -351,7 +351,7 @@ module.exports = function (grunt) {
         },
         constants: {
           API_SERVER: 'localhost:3000',
-          FACEBOOK_APP_ID: '',
+          FACEBOOK_APP_ID: '1558925664339512',
           LINKEDIN_APP_ID: '',
           TWITTER_APP_ID: '',
           GOOGLE_APP_ID: '',
@@ -384,7 +384,7 @@ module.exports = function (grunt) {
         },
         constants: {
           API_SERVER: 'tulupaapi.herokuapp.com',
-          FACEBOOK_APP_ID: '',
+          FACEBOOK_APP_ID: '1558443754387703',
           LINKEDIN_APP_ID: '',
           TWITTER_APP_ID: '',
           GOOGLE_APP_ID: '',

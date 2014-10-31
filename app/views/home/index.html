@@ -40,8 +40,8 @@
             <input type="submit" class="btn btn-sm btn-primary" id="btn-login" name="commit" value="Entrar" ng-disabled="!login_form.$valid" />
 
             ou
-
-            <a class="btn btn-sm btn-danger" ng-click="openSignUp();">Cadastre-se!</a>
+        
+            <a class="btn btn-sm btn-danger" data-dismiss='modal' data-toggle='modal' data-target='#signup-box' role='button'>Cadastre-se!</a>
 
             <a data-dismiss='modal' data-toggle='modal' data-target='#recover-box' role='button'><h5>esqueceu sua senha?</h5></a>
             
@@ -53,12 +53,12 @@
 
 
   <!-- Modals -->
-  <div class="l-signup" ng-include=" 'views/shared/signup.html' " ng-cloak></div>
-  <div class="l-forgot" ng-include=" 'views/shared/forgot-password.html' " ng-cloak></div>
-  <div class="l-forgot-success" ng-include=" 'views/shared/forgot-password-success.html' " ng-cloak></div>
-  <div class="l-reset-password" ng-include=" 'views/shared/reset-password.html' " ng-cloak></div>
-  <div class="l-resend-confirmation" ng-include=" 'views/shared/resend-confirmation.html' " ng-cloak></div>
-  <div class="l-resend-confirmation" ng-include=" 'views/shared/resend-confirmation-success.html' " ng-cloak></div>
+  <div class="l-signup" ng-include=" 'views/session/signup.html' " ng-cloak></div>
+  <div class="l-forgot" ng-include=" 'views/session/forgot-password.html' " ng-cloak></div>
+  <div class="l-forgot-success" ng-include=" 'views/session/success-forgot-password.html' " ng-cloak></div>
+  <div class="l-reset-password" ng-include=" 'views/session/reset-password.html' " ng-cloak></div>
+  <div class="l-resend-confirmation" ng-include=" 'views/session/resend-confirmation.html' " ng-cloak></div>
+  <div class="l-resend-confirmation" ng-include=" 'views/session/success-resend-confirmation.html' " ng-cloak></div>
 </div>
 
 <!-- Helpers -->

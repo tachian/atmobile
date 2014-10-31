@@ -25,7 +25,7 @@ angular.module('playerDirectives', [])
           
           if(angular.isObject(JSON.parse(window.localStorage.getItem('_tlp_player_' + scope.currentLecture.part.id)))) {
             var time_player = JSON.parse(window.localStorage.getItem('_tlp_player_' + scope.currentLecture.part.id));
-            scope.player.currentTime(time_player);
+            scope.player.currentTime(time_player.time_player);
           }
 
           scope.player.load();
