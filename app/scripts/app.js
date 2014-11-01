@@ -195,12 +195,12 @@ atmobileApp.run(['$rootScope', '$location', '$http', 'TokenHandler', 'AuthCallba
 
   // Initialize metadata
   $rootScope.metadata = {
-    'mainTitle': 'Loopa - O melhor conteúdo ao seu alcance.',
-    'title': 'Loopa',
+    'mainTitle': 'Tulupa - O melhor conteúdo ao seu alcance.',
+    'title': 'Tulupa',
     'description': 'O melhor conteúdo ao seu alcance.',
-    'og:url': 'http://www.loopa.com.br',
+    'og:url': 'http://www.tulupa.com.br',
     'og:description': 'O melhor conteúdo ao seu alcance.',
-    'og:title': 'Loosa',
+    'og:title': 'Tulupa',
     'og:image': ''
   };
 
@@ -228,12 +228,12 @@ atmobileApp.factory('ServiceName', ['$q', function ($q) {
 atmobileApp.factory('MetaData', ['$q', function ($q) {
   return {
     metadata: {
-      'mainTitle': 'Loosa - O melhor conteúdo ao seu alcance.',
-      'title': 'Loopa',
+      'mainTitle': 'Tulupa - O melhor conteúdo ao seu alcance.',
+      'title': 'Tulupa',
       'description': 'O melhor conteúdo ao seu alcance.',
-      'og:url': 'http://www.loopa.com.br',
+      'og:url': 'http://www.tulupa.com.br',
       'og:description': 'O melhor conteúdo ao seu alcance.',
-      'og:title': 'Loosa',
+      'og:title': 'Tulupa',
       'og:type': 'website',
       'og:image': ''
     },
