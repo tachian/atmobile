@@ -63,8 +63,8 @@
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/6b9d0a95.scripts.js \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/8b3a500e.vendor.js \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/f485de72.config.js \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/styles/a1ac352b.main.css \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/styles/b9ab1d05.vendor.css \
+/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/styles/cad85893.main.css \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/views/browse \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/views/header \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/views/home \

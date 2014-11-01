@@ -6,8 +6,18 @@ body{
   background-color: rgba(190, 190, 190, 0.5);
 }
 
+.view-frame{
+  overflow: auto;
+}
+
 .view-container {
-  position: relative;
+  position: absolute;
+  top: 45px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .view-frame.ng-enter,
