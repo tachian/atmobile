@@ -8,7 +8,7 @@
     <feature name="SplashScreen">
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
     </feature>
-    <name>At Mobile</name>
+    <name>Tulupa</name>
     <description>
         Video lectures 
     </description>
