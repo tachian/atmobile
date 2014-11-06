@@ -1,22 +1,16 @@
 <div class="container container-home">
-  <div class="title--xxx-large">AMPLIE</div>
-  <div class="title--xx-large">AS POSSIBILIDADES PARA SUA CARREIRA</div>
-  <ul>
-    <li>Estude de graça, a qualquer hora, no seu ritmo, do seu jeito</li>
-    <li>Explore 289 cursos das melhores instituições de ensino do mundo</li>
-  </ul>
+  <div class="row">
+    <div class="title--xx-large">Aprenda mais!</div>
+    <p>Estude, a qualquer hora, em qualquer lugar.</p>
+    <p>O melhores cursos das melhores universidades.</p>
+  </div>
 </div>
 
 <div  ng-controller="UserController" ng-cloak>
-  <div tlp-login>
+  <div tlp-login class="tlp-login container-home">
     <form accept-charset="UTF-8" role="form" id="login_form" name="login_form" novalidate="novalidate" ng-submit="login();">
-      <div class='row-fluid'>
-        <div class="col-xs-3">
-          <div data-target="#facebook" class="btn btn-link" tlp-facebook-login>
-            <i class="iconx-fb-login"></i>
-          </div>
-        </div>
-        <div class="col-xs-9 border-login">
+      <div class='row'>
+        <div class="">
           <div class="alert-message alert" ng-show="(login_form.email.$error.required && login_form.email.$error.invalid && login_form.email.$blur) || (login_form.password.$error.required && login_form.password.$error.invalid && login_form.password.$blur) || showErrors">
             {{errors.message}} </br><a  data-dismiss='modal' data-toggle='modal' data-target='#resend-confirmation' role='button' ng-if="errors.unconfirmed">Quero confirmar minha conta!</a>
           </div>
@@ -56,7 +50,7 @@
   <div class="l-signup" ng-include=" 'views/session/signup.html' " ng-cloak></div>
   <div class="l-forgot" ng-include=" 'views/session/forgot-password.html' " ng-cloak></div>
   <div class="l-forgot-success" ng-include=" 'views/session/success-forgot-password.html' " ng-cloak></div>
-  <div class="l-reset-password" ng-include=" 'views/session/reset-password.html' " ng-cloak></div>
+
   <div class="l-resend-confirmation" ng-include=" 'views/session/resend-confirmation.html' " ng-cloak></div>
   <div class="l-resend-confirmation" ng-include=" 'views/session/success-resend-confirmation.html' " ng-cloak></div>
 </div>

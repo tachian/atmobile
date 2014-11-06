@@ -1,16 +1,18 @@
 .title--xxx-large {
 	padding-top: 20px;
-  font-size: 60px;
-  line-height: 45px;
+  font-size: 40px;
+  line-height: 70px;
 }
 
 .title--xx-large {
+  padding-top: 20px;
   font-size: 30px;
-  line-height: 35px;
+  line-height: 70px;
 }
 
 .container-home {
 	color: #5e5e5e;
+  text-align: center;
 }
 
 .btn-signup {
@@ -48,4 +50,8 @@
   height: 19px;
   float: left;
   background-size: 19px;
+}
+
+.tlp-login{
+  padding-top: 30px;
 }

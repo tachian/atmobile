@@ -145,25 +145,6 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
           });
         });
       });
-
-
-    
-      // Lectures.query({service: 'course_visiteds', id: $routeParams.id}).$promise.then(function(data) {
-      //   data.forEach(function (listItem) {
-
-      //     parts({service: serviceParts, id: listItem.id}).$promise.then(function(data) {
-      //       listItem.parts = data;
-      //       listItem.perc = percComplete(listItem.visited_parts, listItem.parts.length);
-      //       $scope.lectures.push(listItem);
-      //       listItem.currentPart = data[0];
-      //       data.forEach(function (part){
-      //         if(part.visited){
-      //           listItem.currentPart = part;
-      //         } 
-      //       });
-      //     });
-      //   });
-      // });
     }
     else
     {
@@ -188,6 +169,10 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
     };
 
     $scope.showPlayer = function(lecture, currentPart){
+
+      Session.currentUser.is_new = false;
+      Session.currentUser.is_visited_courses = true;
+
       $scope.currentLecture = {lecture: lecture, part: currentPart};
       var visitedPartContents = {
         course_id: $scope.courseInfo.id,
@@ -196,6 +181,7 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
         user_id: Session.currentUser.id,
         time: 0
       };
+
       var indexLecture = $scope.lectures.indexOf(lecture);
       var indexPart = $scope.lectures[indexLecture].parts.indexOf(currentPart);
       if(!$scope.lectures[indexLecture].parts[indexPart].is_visited){
