@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+/*
        Licensed to the Apache Software Foundation (ASF) under one
        or more contributor license agreements.  See the NOTICE file
        distributed with this work for additional information
@@ -16,8 +15,23 @@
        KIND, either express or implied.  See the License for the
        specific language governing permissions and limitations
        under the License.
--->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.apache.cordova" android:versionName="1.0" android:versionCode="1">
-    <uses-sdk android:minSdkVersion="8" />
-</manifest>
+ */
+
+package io.cordova.atmobile;
+
+import android.os.Bundle;
+import org.apache.cordova.*;
+
+public class Tulupa extends CordovaActivity 
+{
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        super.init();
+        // Set by <content src="index.html" /> in config.xml
+        super.loadUrl(Config.getStartUrl());
+        //super.loadUrl("file:///android_asset/www/index.html");
+    }
+}
+

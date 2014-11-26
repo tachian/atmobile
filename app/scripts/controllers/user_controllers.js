@@ -2,7 +2,7 @@
 
 var userControllers = angular.module('userControllers', []);
 
-userControllers.controller('UserController', ['$scope', '$routeParams', 'Session',function ($scope, $routeParams, Session, $sessionStorage) {
+userControllers.controller('UserController', ['$scope', '$routeParams', 'Session',function ($scope, $routeParams, Session) {
 
   $scope.current_user = function () {
    return Session.currentUser; 

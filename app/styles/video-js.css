@@ -659,7 +659,7 @@ control positioning and full window mode. **
 }
 
 .video-js{
-  z-index: 10003;
+  z-index: 500;
   padding-top: 56.25%;
   width: 100%;
   position: fixed;

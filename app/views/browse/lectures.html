@@ -2,10 +2,16 @@
 
   <div class="video-overlay" ng-if="currentLecture">
 	  <div class="click-area" ng-click="destroyPlayer()"></div>
-		<video  videojs class="video-js vjs-default-skin" controls id="videoPlayer" data-setup="{}" webkit-playsinline>
+		<video  videojs class="video-js vjs-default-skin" id="videoPlayer" webkit-playsinline>
 			<source src="" type='video/youtube'>
-			<track kind="subtitles" src="" srclang="pt" label="Português" default></track>
+			<track kind="subtitles" src="" srclang="pt" label="Português" default ng-if="lecture.subtitle != ''"></track>
  		</video>
+
+
+<!-- 		<video id="videoPlayer" webkit-playsinline src="" class="video-js vjs-default-skin" controls preload="auto" data-setup='{ "techOrder": ["youtube"], "src": "http://www.youtube.com/watch?v=xjS6SftYQaQ" }'>
+			<track kind="subtitles" src="" srclang="pt" label="Português" default ng-if="lecture.subtitle != ''"></track>
+ 		</video> -->
+
 	</div>
 
 	<div class="container" ng-cloak>

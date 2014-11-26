@@ -8,29 +8,34 @@ angular.module('playerDirectives', [])
       restrict : 'A',
       link : function (scope, element, attrs){
 
+          var time_player = {time: 0};
+
+          if(angular.isObject(JSON.parse(window.localStorage.getItem('_tlp_player_' + scope.currentLecture.part.id)))) {
+            time_player = JSON.parse(window.localStorage.getItem('_tlp_player_' + scope.currentLecture.part.id));
+          }
+
           var setup = {
             'techOrder' : ['html5', 'youtube'],
             'aspectRatio': 'auto',
             'height': 'auto',
             'width': 'auto',
-            'preload': 'auto'
+            'preload': 'auto',
+            'controls': 'controls',
+            'starttime': time_player.time
           };
           scope.player = videojs("videoPlayer", setup);
           
+          scope.player.enableTouchActivity()
           scope.player.src([{src:"http://m.youtube.com/watch?v="+scope.currentLecture.part.url.trim(), type:'video/youtube'}]);
           scope.player.bigPlayButton.hide();
+
           if(scope.currentLecture.lecture.subtitle){
             scope.player.textTracks_[0].src_ = "http://tulupa.s3.amazonaws.com/subtitles/"+scope.currentLecture.lecture.subtitle+"?true"  
-          }
-          
-          if(angular.isObject(JSON.parse(window.localStorage.getItem('_tlp_player_' + scope.currentLecture.part.id)))) {
-            var time_player = JSON.parse(window.localStorage.getItem('_tlp_player_' + scope.currentLecture.part.id));
-            scope.player.currentTime(time_player.time_player);
-          }
-
-          scope.player.load();
+          }          
 
           angular.element('body').css('padding-top','0px');
+
+          scope.player.load();
 
           scope.$on('$destroy', function(node, scope){
             videojs('videoPlayer').dispose();

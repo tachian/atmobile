@@ -173,7 +173,8 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
       Session.currentUser.is_new = false;
       Session.currentUser.is_visited_courses = true;
 
-      $scope.currentLecture = {lecture: lecture, part: currentPart};
+      var urlVideo = "http://m.youtube.com/watch?v="+currentPart.url.trim();
+      $scope.currentLecture = {lecture: lecture, part: currentPart, url: urlVideo};
       var visitedPartContents = {
         course_id: $scope.courseInfo.id,
         lecture_id: lecture.id,

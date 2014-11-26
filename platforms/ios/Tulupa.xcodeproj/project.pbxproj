@@ -38,8 +38,8 @@
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		5E5040D0B7C540BFA5DF029F /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F15D26C17C42B08BA3E2CB /* CDVLogger.m */; };
-		75E9B66678D641BD83C4A959 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = C660BABACD5D45E8B64BC446 /* CDVSplashScreen.m */; };
+		150BE6AC9180487B97FC204D /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 524C2CBC31B94E9FB2C6481F /* CDVLogger.m */; };
+		2F0F4EEC8FEE4D7697D3101E /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3999CF95ED09487F8F89679C /* CDVSplashScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,10 +104,10 @@
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Tulupa/config.xml"; sourceTree = "<group>"; };
-		44F15D26C17C42B08BA3E2CB /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "org.apache.cordova.console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		6DBD4DE3C65F43769946DB3B /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		C660BABACD5D45E8B64BC446 /* CDVSplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVSplashScreen.m"; path = "org.apache.cordova.splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		4C1BABBD8EEA42D5A27109E7 /* CDVSplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSplashScreen.h"; path = "org.apache.cordova.splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		524C2CBC31B94E9FB2C6481F /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "org.apache.cordova.console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		D703B105BE9040108E16509F /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		3999CF95ED09487F8F89679C /* CDVSplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVSplashScreen.m"; path = "org.apache.cordova.splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		9C0CDD74AC5F4407A26F4860 /* CDVSplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSplashScreen.h"; path = "org.apache.cordova.splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,10 +228,10 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				44F15D26C17C42B08BA3E2CB /* CDVLogger.m */,
-				6DBD4DE3C65F43769946DB3B /* CDVLogger.h */,
-				C660BABACD5D45E8B64BC446 /* CDVSplashScreen.m */,
-				4C1BABBD8EEA42D5A27109E7 /* CDVSplashScreen.h */,
+				524C2CBC31B94E9FB2C6481F /* CDVLogger.m */,
+				D703B105BE9040108E16509F /* CDVLogger.h */,
+				3999CF95ED09487F8F89679C /* CDVSplashScreen.m */,
+				9C0CDD74AC5F4407A26F4860 /* CDVSplashScreen.h */,
 			);
 			name = Plugins;
 			path = "Tulupa/Plugins";
@@ -426,8 +426,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				5E5040D0B7C540BFA5DF029F /* CDVLogger.m in Sources */,
-				75E9B66678D641BD83C4A959 /* CDVSplashScreen.m in Sources */,
+				150BE6AC9180487B97FC204D /* CDVLogger.m in Sources */,
+				2F0F4EEC8FEE4D7697D3101E /* CDVSplashScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

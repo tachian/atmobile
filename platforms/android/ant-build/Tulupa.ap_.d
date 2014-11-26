@@ -1,4 +1,4 @@
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/ant-build/AtMobile.ap_ \
+/Users/andretachian/Documents/Veduca/atmobile/platforms/android/ant-build/Tulupa.ap_ \
  : /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable/icon.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-hdpi/icon.png \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/res/drawable-land-hdpi/screen.png \
@@ -60,10 +60,10 @@
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/plugins/org.apache.cordova.splashscreen \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/plugins/org.apache.cordova.splashscreen/www \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/plugins/org.apache.cordova.splashscreen/www/splashscreen.js \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/329b9f57.scripts.js \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/8b3a500e.vendor.js \
+/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/b205490d.scripts.js \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/f485de72.config.js \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/styles/974f4eae.main.css \
+/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/styles/26e76560.main.css \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/styles/b9ab1d05.vendor.css \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/views/browse \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/views/header \

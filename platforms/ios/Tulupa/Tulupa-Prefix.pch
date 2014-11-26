@@ -17,7 +17,7 @@
  under the License.
  */
 //
-// Prefix header for all source files of the 'AtMobile' target in the 'AtMobile' project
+// Prefix header for all source files of the 'Tulupa' target in the 'Tulupa' project
 //
 
 #ifdef __OBJC__
