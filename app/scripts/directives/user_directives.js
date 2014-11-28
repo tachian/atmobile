@@ -181,7 +181,7 @@ userDirectives.directive('tlpForgotPassword', ['$rootScope', function ($rootScop
     restrict: 'A',
     link: function($scope, element, attrs) {
       $rootScope.$on('password-recovery-error', function (event) {
-        // $scope.resetForm();
+        $scope.resetForm();
         $scope.showErrors = true;
         element.modal('show');
         element.find('#error_message').removeClass('hidden')
