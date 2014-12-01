@@ -61,9 +61,9 @@
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/plugins/org.apache.cordova.splashscreen/www \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/plugins/org.apache.cordova.splashscreen/www/splashscreen.js \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/8b3a500e.vendor.js \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/b205490d.scripts.js \
+/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/e08aa9d5.scripts.js \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/scripts/f485de72.config.js \
-/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/styles/26e76560.main.css \
+/Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/styles/1fd0ab80.main.css \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/styles/b9ab1d05.vendor.css \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/views/browse \
 /Users/andretachian/Documents/Veduca/atmobile/platforms/android/assets/www/views/header \

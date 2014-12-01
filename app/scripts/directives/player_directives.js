@@ -21,12 +21,13 @@ angular.module('playerDirectives', [])
             'width': 'auto',
             'preload': 'auto',
             'controls': 'controls',
-            'starttime': time_player.time
+            'starttime': time_player.time,
+            'volume':10
           };
           scope.player = videojs("videoPlayer", setup);
           
           scope.player.enableTouchActivity()
-          scope.player.src([{src:"http://m.youtube.com/watch?v="+scope.currentLecture.part.url.trim(), type:'video/youtube'}]);
+          scope.player.src([{src:"https://m.youtube.com/watch?v="+scope.currentLecture.part.url.trim(), type:'video/youtube'}]);
           scope.player.bigPlayButton.hide();
 
           if(scope.currentLecture.lecture.subtitle){
@@ -48,7 +49,7 @@ angular.module('playerDirectives', [])
 
           function setTime(){
             window.localStorage.setItem('_tlp_player_' + scope.currentLecture.part.id, JSON.stringify({
-              time: scope.player.currentTime()})
+              time: parseInt(scope.player.currentTime())})
             );
           }
         }    

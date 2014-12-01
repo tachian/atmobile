@@ -79,6 +79,7 @@ browseControllers.controller('MyCoursesController', ['$scope', '$http', '$locati
             course.course_id = visit.course_id;
             course.visiteds = 1;
             course.image = visit.image;
+            course.subtitle = visit.subtitle;
             $scope.listCourses.push(course);
           }
           else
@@ -174,7 +175,8 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
       Session.currentUser.is_visited_courses = true;
 
       var urlVideo = "http://m.youtube.com/watch?v="+currentPart.url.trim();
-      $scope.currentLecture = {lecture: lecture, part: currentPart, url: urlVideo};
+      var urlSubtitle = "http://tulupa.s3.amazonaws.com/subtitles/"+lecture.subtitle+"?true";
+      $scope.currentLecture = {lecture: lecture, part: currentPart, url: urlVideo, urlSubtitle: urlSubtitle};
       var visitedPartContents = {
         course_id: $scope.courseInfo.id,
         lecture_id: lecture.id,
@@ -198,7 +200,7 @@ browseControllers.controller('LecturesController', ['$scope', '$routeParams', '$
 
     $scope.destroyPlayer = function(){
       window.localStorage.setItem('_tlp_player_' + $scope.currentLecture.part.id, JSON.stringify({
-        time: this.player.currentTime()}
+        time: parseInt(this.player.currentTime())}
         ));
       $scope.currentLecture = "";
     };

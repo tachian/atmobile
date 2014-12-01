@@ -11,7 +11,7 @@
 		<div class="media media-browse" mv-complete-course ng-repeat="course in listCourses">
 			<a class="pull-left" ng-href="#/course/{{course.course_id}}" style='width: 70px; height: 50px;'>
 				<img class="media-object" ng-src="http://tulupa.s3.amazonaws.com/lectures/{{course.image}}.jpg" alt="Responsive image" style='width: 70px; height: 50px;'>
-				<div ng-class="{'icon-brazil': course.subtitle != ''}"></div>
+				<div ng-class="{'icon-brazil': course.subtitle == true}"></div>
 			</a>
 			<a ng-href="#/course/{{course.course_id}}">
 				<div class="media-body">
