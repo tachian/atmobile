@@ -8,8 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div tlp-back>
-        <div class="pull-left navbar-brand navbar-brand-mobile icon-back glyphicon glyphicon-chevron-left" ng-if="showBackButton()"></div>
+      <div tlp-back ng-if="showBackButton()">
+        <div class="pull-left navbar-brand navbar-brand-mobile icon-back glyphicon glyphicon-chevron-left"></div>
+        <img class="navbar-icon pull-left" ng-src="http://tulupa.s3.amazonaws.com/home/logo_1024_1024.png">
+      </div>
+      <div ng-if="!showBackButton()">
         <img class="navbar-icon pull-left" ng-src="http://tulupa.s3.amazonaws.com/home/logo_1024_1024.png">
       </div>
       <div class="brand navbar-brand navbar-brand-mobile">{{title}}</div>

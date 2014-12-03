@@ -5153,13 +5153,13 @@ vjs.ControlBar.prototype.options_ = {
     'timeDivider': {},
     'durationDisplay': {},
     'remainingTimeDisplay': {},
-    'liveDisplay': {},
+    //'liveDisplay': {},
     'progressControl': {},
-    'fullscreenToggle': {},
-    'volumeControl': {},
-    'muteToggle': {},
+    'fullscreenToggle': {}
+    //'volumeControl': {},
+    //'muteToggle': {},
     // 'volumeMenuButton': {},
-    'playbackRateMenuButton': {}
+    //'playbackRateMenuButton': {}
   }
 };
 
@@ -8389,9 +8389,9 @@ vjs.ChaptersTrackMenuItem.prototype.update = function(){
 
 // Add Buttons to controlBar
 vjs.obj.merge(vjs.ControlBar.prototype.options_['children'], {
-  'subtitlesButton': {},
-  'captionsButton': {},
-  'chaptersButton': {}
+  // 'subtitlesButton': {},
+  // 'captionsButton': {},
+  // 'chaptersButton': {}
 });
 
 // vjs.Cue = vjs.Component.extend({

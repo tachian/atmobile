@@ -2,10 +2,12 @@
 <widget id="io.cordova.atmobile" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Tulupa</name>
     <description>
-        Video lectures 
+        Estude, a qualquer hora.
+        Os melhores professores das melhores universidades do mundo.
+        Baixe o aplicativo em seu smartphone ou tablet.
     </description>
     <author email="altachian@gmail.com" href="http://github.com/tachian">
-        Apache Cordova Team
+        André Luiz Tachian
     </author>
     <content src="/index.html" />
     <access origin="*" />
